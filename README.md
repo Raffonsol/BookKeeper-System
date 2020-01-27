@@ -1,0 +1,2 @@
+# BookKeeper-System
+New system for Library Inc. that will allow the business operation staff to more easily access information from the catalog of books available for their clientele. The system will allow the staff to add, edit and delete books from the database. Look for full book listings based on book type, title, publisher; look for listing of books out on loan or overdue and allow the clientele to search for books based on type, author or title.
