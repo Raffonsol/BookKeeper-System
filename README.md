@@ -14,4 +14,5 @@ open) and navigate into this projects directory and run the command `npm i mysql
 ### DB file
 using the `cd` command. Navigate to 
 the DB directory, and run the command `node CreateBookKeeperDB.js`
+and then run the command `node populateDB.js`
 
