@@ -8,29 +8,49 @@ body {
     background-color: #eee;
 }
 
-nav {
-    width: 100%;
+.nav {
+    width: 50%;
     height: 100px;
     background-color: #fff;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 ul {
 
 }
 
-ul li{
+.nav-link{
+    height: 100px;
     list-style: none;
-    display: inline-block;
     float: left;
-    line-height: 100px;
+    /*line-height: 100px;*/
+    display: flex;
+
+    padding: 0 20px;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+    font-family: Arial, serif;
+
+    background-color: #fff;
+    border: none;
+
+}
+
+.nav-link:hover {
+    background-color: whitesmoke;
 }
 
 ul li a{
-    text-decoration: none;
-    font-size: 14px;
-    font-family: Arial;
-    color: black;
-    padding: 0 20px;
+
+
+
     display: block;
 }
 
+.red {
+    background-color: red;
+}
