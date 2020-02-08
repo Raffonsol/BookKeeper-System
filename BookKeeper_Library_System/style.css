@@ -18,16 +18,12 @@ body {
     justify-content: flex-start;
 }
 
-ul {
-
-}
-
 .nav-link{
     height: 100px;
     list-style: none;
     float: left;
     /*line-height: 100px;*/
-    display: flex;
+    display: none;
 
     padding: 0 20px;
     text-decoration: none;
@@ -44,13 +40,12 @@ ul {
     background-color: whitesmoke;
 }
 
-ul li a{
-
-
-
-    display: block;
+.header {
+    display: flex;
+    background: white;
+}
+.headerIcon {
+    height: 80px;
+    margin: 5px;
 }
 
-.red {
-    background-color: red;
-}
