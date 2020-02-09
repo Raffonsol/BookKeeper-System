@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="./src/createData.js">
+
+</script>
+<body>
+<form action="" name="entryForm">
+    <label for="dataType"><b>What do you wish to create?</b></label>
+    <select id="dataType" onchange="showForm(value)">
+        <option value="null">none</option>
+        <option class="admin librarian" value="book">Book Record</option>
+        <option class="admin support" value="supplier">Supplier Record</option>
+        <option class="admin support librarian" value="user">User Account</option>
+    </select>
+    <div class="divisor"></div>
+    <div id="form"></div>
+</form>
+</body>
+</html>
