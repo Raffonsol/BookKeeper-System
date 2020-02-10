@@ -19,7 +19,8 @@ $(() => {
  * @param form
  */
 function showForm(form) {
-    if (form === 'null') {
+    // check if selected options is just the placeholder
+    if (form === 'none') {
         return;
     }
     dataType = form;
