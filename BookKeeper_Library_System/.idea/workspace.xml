@@ -42,6 +42,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunManager" selected="Node.js.populateDB.js">
     <configuration name="CreateBookKeeperDB.js" type="NodeJSConfigurationType" temporary="true" path-to-node="node" nameIsGenerated="true" path-to-js-file="CreateBookKeeperDB.js" working-dir="$PROJECT_DIR$/DB">
@@ -79,7 +80,7 @@
       <workItem from="1581136505137" duration="23000" />
       <workItem from="1581136539898" duration="20000" />
       <workItem from="1581136568062" duration="115000" />
-      <workItem from="1581136690723" duration="2634000" />
+      <workItem from="1581136690723" duration="8726000" />
     </task>
     <servers />
   </component>
@@ -104,29 +105,33 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="279" key="FileChooserDialogImpl/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581136502060" />
-    <state width="1899" height="272" key="GridCell.Tab.0.bottom" timestamp="1581139379249">
+    <state width="1899" height="272" key="GridCell.Tab.0.bottom" timestamp="1581317870352">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581139379249" />
+    <state width="1899" height="272" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870352" />
     <state width="1659" height="272" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222267" />
-    <state width="1899" height="272" key="GridCell.Tab.0.center" timestamp="1581139379248">
+    <state width="1899" height="272" key="GridCell.Tab.0.center" timestamp="1581317870352">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.center/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581139379248" />
+    <state width="1899" height="272" key="GridCell.Tab.0.center/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870352" />
     <state width="1659" height="272" key="GridCell.Tab.0.center/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222267" />
-    <state width="1899" height="272" key="GridCell.Tab.0.left" timestamp="1581139379248">
+    <state width="1899" height="272" key="GridCell.Tab.0.left" timestamp="1581317870351">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.left/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581139379248" />
+    <state width="1899" height="272" key="GridCell.Tab.0.left/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870351" />
     <state width="1659" height="272" key="GridCell.Tab.0.left/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222266" />
-    <state width="1899" height="272" key="GridCell.Tab.0.right" timestamp="1581139379249">
+    <state width="1899" height="272" key="GridCell.Tab.0.right" timestamp="1581317870352">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.right/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581139379249" />
+    <state width="1899" height="272" key="GridCell.Tab.0.right/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870352" />
     <state width="1659" height="272" key="GridCell.Tab.0.right/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222267" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1580768365575">
+    <state x="234" y="0" key="SettingsEditor" timestamp="1581314006131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1580768365575" />
+    <state x="234" y="0" key="SettingsEditor/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581314006131" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581315945143">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581315945143" />
   </component>
 </project>
