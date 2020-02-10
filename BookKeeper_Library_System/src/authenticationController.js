@@ -13,7 +13,7 @@
 'guest'
 */
 
-var activeRole = 'guest';
+var activeRole = 'admin';
 
 /**
  * All header links are loaded but not displayed.

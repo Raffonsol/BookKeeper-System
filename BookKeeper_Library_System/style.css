@@ -11,6 +11,7 @@
     min-width: 500px;
     height: 100%;
     position: absolute;
+    overflow-y: hidden;
 }
 #content {
     margin-top: 5px;
@@ -116,6 +117,5 @@ textarea {
 }
 
 input[aria-invalid="true"], textarea[aria-invalid="true"] {
-    border: 1px solid #f00;
-    box-shadow: 0 0 4px 0 #f00;
+    border-bottom: 1px solid #f00;
 }
