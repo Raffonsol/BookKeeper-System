@@ -15,7 +15,7 @@ $(() => {
 
 /**
  * loads the selected add form
- * to post entries to the database
+ * to take entries for posting
  * @param form
  */
 function showForm(form) {
