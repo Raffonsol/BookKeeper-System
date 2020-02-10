@@ -4,8 +4,25 @@
     padding: 0;
 }
 
+#parent {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    min-width: 500px;
+    height: 100%;
+    position: absolute;
+    overflow-y: hidden;
+}
+#content {
+    margin-top: 5px;
+    background-color: white;
+    height: 100%;
+}
+
 body {
     background-color: #eee;
+    font-family: "Times New Roman", serif;
+    height: 100%;
 }
 
 .nav {
@@ -18,16 +35,11 @@ body {
     justify-content: flex-start;
 }
 
-ul {
-
-}
-
 .nav-link{
     height: 100px;
     list-style: none;
     float: left;
     /*line-height: 100px;*/
-    display: flex;
 
     padding: 0 20px;
     text-decoration: none;
@@ -44,13 +56,73 @@ ul {
     background-color: whitesmoke;
 }
 
-ul li a{
-
-
-
-    display: block;
+.header {
+    display: flex;
+    background: white;
+}
+.headerIcon {
+    height: 80px;
+    margin: 5px;
 }
 
-.red {
-    background-color: red;
+.librarian, .support, .admin, .guest {
+    display: none;
+}
+
+#content {
+    padding: 10px;
+}
+
+form {
+}
+
+.formField {
+    position: fixed;
+    left: calc(25% + 150px);
+    width: 130px;
+}
+
+.error-message {
+    font-size: 8px;
+    position: fixed;
+    left: calc(25% + 150px);
+
+}
+
+.divisor {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+input, select, textarea{
+
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline:0;
+    border-bottom: 1px dashed black;
+}
+.submitBtn {
+    height: 30px;
+    width: 50px;
+    border-radius: 10%;
+}
+.submitBtn:hover {
+    background: silver;
+}
+
+textarea {
+    min-width: 130px;
+    min-height: 30px;
+    max-width: 500px;
+    max-height: 50px;
+}
+
+input[aria-invalid="true"], textarea[aria-invalid="true"] {
+    border-bottom: 1px solid #f00;
 }
