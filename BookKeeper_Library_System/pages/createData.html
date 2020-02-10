@@ -4,7 +4,7 @@
 
 </script>
 <body>
-<form action="" name="entryForm">
+<form action="" name="entryForm" onfocusout="updateForm()" oninput="updateForm()">
     <label for="dataType"><b>What do you wish to create?</b></label>
     <select id="dataType" onchange="showForm(value)">
         <option value="null">none</option>
