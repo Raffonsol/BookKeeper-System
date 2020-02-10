@@ -23,6 +23,23 @@ function showForm(form) {
     if (form === 'none') {
         return;
     }
+
+    // reset open form
+    openForm = null;
+
+    // set dataType
     dataType = form;
     $("#form").load('components/' + form + 'Form.html');
+
+    // reset all fields
+    resetAllFields();
+}
+
+/**
+ * marks all fields as untouched
+ */
+function resetAllFields() {
+    for (let i = 0; i < validators[dataType].length; i++) {
+        validators[dataType][i].touched = false;
+    }
 }
