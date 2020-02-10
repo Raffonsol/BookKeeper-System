@@ -12,14 +12,19 @@ var con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
-    var sql = "CREATE TABLE book (" +
+    var sql = "SET FOREIGN_KEY_CHECKS = 0;" +
+
+        "DROP TABLES IF EXISTS book, supplier, bookunit, role, employee, employeeaccount, memberaccount, loan, transaction;" +
+
+        "CREATE TABLE book (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
         "title VARCHAR(150) NOT NULL," +
-        "author VARCHAR(100), " +
+        "author VARCHAR(100) NOT NULL, " +
         "genre INT NOT NULL, " +
         "publishDate DATE, " +
         "edition VARCHAR(100)," +
-        "shelf INT NOT NULL);" +
+        "shelf INT," +
+        "isbn VARCHAR(11));" +
 
         "CREATE TABLE supplier (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
@@ -28,7 +33,7 @@ con.connect(function(err) {
         "website VARCHAR(2083));" +
 
         "CREATE TABLE bookunit (" +
-        "isbn VARCHAR(11) NOT NULL PRIMARY KEY," +
+        "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
         "bookId INT," +
         "FOREIGN KEY (bookId) REFERENCES book(id)," +
         "supplierId INT NOT NULL," +
@@ -69,8 +74,8 @@ con.connect(function(err) {
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
         "transactionId INT," +
         "FOREIGN KEY (transactionId) REFERENCES memberaccount(id)," +
-        "isbn VARCHAR(11)," +
-        "FOREIGN KEY (isbn) REFERENCES bookunit(isbn)," +
+        "bookId INT," +
+        "FOREIGN KEY (bookId) REFERENCES bookunit(id)," +
         "memberAccount INT, " +
         "FOREIGN KEY (memberAccount) REFERENCES loan(id), " +
         "dueDate DATE NOT NULL," +
@@ -85,7 +90,9 @@ con.connect(function(err) {
         "memberAccount INT, " +
         "FOREIGN KEY (memberAccount) REFERENCES loan(id), " +
         "date DATE NOT NULL, " +
-        "time TIME NOT NULL);";
+        "time TIME NOT NULL);" +
+
+        "";
 
     con.query(sql, function (err, result) {
         if (err) throw err;
