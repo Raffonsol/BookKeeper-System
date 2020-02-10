@@ -2,10 +2,22 @@
 <html lang="en">
 
 <br>
-<label for="firstName">First Name</label> <input class="formField" id="firstName" type="text"><br><br>
-<label for="lastName">Last Name</label> <input class="formField" id="lastName" type="text"><br><br>
-<label for="email">Email</label> <input class="formField" id="email" type="text"><br><br>
-<label for="phone">Phone</label> <input class="formField" id="phone" type="text"><br><br>
-<input class="submitBtn" type="button" value="Submit" onclick="submitBook()">
+<span>First Name</span>
+<input class="formField" id="firstName" type="text" onfocusout="markAsTouched(this)"><br>
+<label class="error-message" for="firstName"></label><br>
+
+<span>Last Name</span>
+<input class="formField" id="lastName" type="text" onfocusout="markAsTouched(this)"><br>
+<label class="error-message" for="lastName"></label><br>
+
+<span>Email</span>
+<input class="formField" id="email" type="text" onfocusout="markAsTouched(this)"><br>
+<label class="error-message" for="email"></label><br>
+
+<span>Phone</span>
+<input class="formField" id="phone" type="text" onfocusout="markAsTouched(this)"><br>
+<label class="error-message" for="phone"></label><br>
+
+<input class="submitBtn" type="button" value="Submit" onclick="submitData()">
 
 </html>
