@@ -2,9 +2,18 @@
 <html lang="en">
 
 <br>
-<label for="supplierName">Name</label> <input class="formField" id="supplierName" type="text"><br><br>
-<label for="about">About</label> <textarea class="formField" id="about"></textarea><br><br><br>
-<label for="website">Website</label> <input class="formField" id="website" type="text"><br><br>
-<input class="submitBtn" type="button" value="Submit" onclick="submitSupplier()">
+<span>Name</span>
+<input class="formField" id="supplierName" onfocusout="markAsTouched(this)" type="text"><br>
+<label class="error-message" for="supplierName"></label><br>
+
+<span>About</span>
+<textarea class="formField" id="about" onfocusout="markAsTouched(this)"></textarea><br>
+<br><label class="error-message" for="about"></label><br>
+
+<span>Website</span>
+<input class="formField" id="website" onfocusout="markAsTouched(this)" type="text"><br>
+<label class="error-message" for="website"></label><br>
+
+<input class="submitBtn" type="button" value="Submit" onclick="submitData()">
 
 </html>
