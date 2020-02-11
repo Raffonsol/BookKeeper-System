@@ -77,6 +77,13 @@ function submitData() {
     // var bookid = result
     if (!true) {
         // create book type
+        if(dataType === "book"){
+            var sql = `INSERT INTO ${dataType} ( title, author, genre, publisherDate, edition, shelf, isbn) VALUES ()`;
+
+            con.query(sql, )
+        }
+
+
     }
     // create array[7] amount of units
 }
