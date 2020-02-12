@@ -1,64 +1,60 @@
+
 // validators
 var validators = {
-    book: [
-        {field: 'supplier', required: false, regex: null, touched: false},
-        {field: 'title', required: true, regex: null, touched: false},
-        {field: 'isbn', required: false, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
-        {field: 'author', required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
-        {field: 'genre', required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
-        {field: 'edition', required: false, regex: null, touched: false},
-        {field: 'publishDate', required: false, regex: null, touched: false},
-        {field: 'units', required: true, regex: null, touched: false},
-    ],
-    supplier: [
-        {field: 'supplierName', required: true, regex: null, touched: false},
-        {field: 'about', required: false, regex: null, touched: false},
-        {
-            field: 'website',
+    book: {
+        supplier: {required: false, regex: null, touched: false},
+        title: {required: true, regex: null, touched: false},
+        isbn: {required: false, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
+        author: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
+        genre: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
+        edition: {required: false, regex: null, touched: false},
+        publishDate: {required: false, regex: null, touched: false},
+        units: {required: true, regex: null, touched: false},
+    },
+    supplier: {
+        supplierName: {required: true, regex: null, touched: false},
+        about: {required: false, regex: null, touched: false},
+        website: {
             required: false,
-            regex: '^(https?:\\/\\/)?(www\\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\\.)+[\\w]{2,}(\\/\\S*)?, touched: false$'
-        },
-    ],
-    user: [
-        {field: 'firstName', required: true, regex: '^[A-Za-z]+$', touched: false},
-        {field: 'lastName', required: true, regex: '^[A-Za-z]+$', touched: false},
-        {field: 'email', required: false, regex: '^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$', touched: false},
-        {
-            field: 'phone',
-            required: false,
-            regex: '^\\(?([0-9]{3})\\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$',
+            regex: '^(https?:\\/\\/)?(www\\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\\.)+[\\w]{2,}(\\/\\S*)?$',
             touched: false
         },
-    ]
+    },
+    user: {
+        firstName: {required: true, regex: '^[A-Za-z]+$', touched: false},
+        lastName: {required: true, regex: '^[A-Za-z]+$', touched: false},
+        email: {required: false, regex: '^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$', touched: false},
+        phone: {required: false, regex: '^\\(?([0-9]{3})\\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$', touched: false},
+    }
 };
 
 function bookData() {
-    var form = [];
-    form.push(document.getElementById('supplier').value);
-    form.push(document.getElementById('title').value);
-    form.push(document.getElementById('isbn').value);
-    form.push(document.getElementById('author').value);
-    form.push(document.getElementById('genre').value);
-    form.push(document.getElementById('edition').value);
-    form.push(document.getElementById('publishDate').value);
-    form.push(document.getElementById('units').value);
+    var form = {};
+    form.supplier = (document.getElementById('supplier').value);
+    form.title = (document.getElementById('title').value);
+    form.isbn = (document.getElementById('isbn').value);
+    form.author = (document.getElementById('author').value);
+    form.genre = (document.getElementById('genre').value);
+    form.edition = (document.getElementById('edition').value);
+    form.publishDate = (document.getElementById('publishDate').value);
+    form.units = (document.getElementById('units').value);
     return form;
 }
 
 function supplierData() {
-    var form = [];
-    form.push(document.getElementById('supplierName').value);
-    form.push(document.getElementById('about').value);
-    form.push(document.getElementById('website').value);
+    var form = {};
+    form.supplierName = (document.getElementById('supplierName').value);
+    form.about = (document.getElementById('about').value);
+    form.website = (document.getElementById('website').value);
     return form;
 }
 
 function userData() {
-    var form = [];
-    form.push(document.getElementById('firstName').value);
-    form.push(document.getElementById('lastName').value);
-    form.push(document.getElementById('email').value);
-    form.push(document.getElementById('phone').value);
+    var form = {};
+    form.firstName = (document.getElementById('firstName').value);
+    form.lastName = (document.getElementById('lastName').value);
+    form.email = (document.getElementById('email').value);
+    form.phone = (document.getElementById('phone').value);
     return form;
 }
 
@@ -66,7 +62,6 @@ function userData() {
  * post a book
  */
 function submitData() {
-    console.log(dataType);
     var formData = window[`${dataType}Data`]();
     if (validateAllFields(formData)) {
         return;
@@ -75,17 +70,19 @@ function submitData() {
     console.log('submitted', formData);
     //TODO: query database to see if this book title already exists
     // var bookid = result
-    if (!true) {
-        // create book type
-        if(dataType === "book"){
-            var sql = `INSERT INTO ${dataType} ( title, author, genre, publisherDate, edition, shelf, isbn) VALUES ()`;
-
-            con.query(sql, )
-        }
-
-
+    // create book type
+    if (dataType === "book") {
+        submitBooks(formData);
     }
-    // create array[7] amount of units
+}
+
+function submitBooks(formData) {
+
+    var sql = `SELECT * from book WHERE book.title = ${formData[1]}`;
+    var result = con.query(sql);
+    console.log(result);
+    // var sql = `INSERT INTO book ( title, author, genre, publisherDate, edition, shelf, isbn) VALUES ()`;
+
 }
 
 function editBook() {
@@ -105,12 +102,12 @@ function updateForm() {
     // prevents validation from running
     // when dropdown is selected
     if (!dataType) return;
-    var validatingForm = dataType;
 
-    var data = window[`${validatingForm}Data`]();
-    for (let i = 0; i < data.length; i++) {
-        validate(i, data[i])
-    }
+    var data = window[`${dataType}Data`]();
+
+    Object.keys(data).forEach(key => {
+        validate(key, data[key]);
+    });
 }
 
 /**
@@ -119,48 +116,48 @@ function updateForm() {
  * @param element element just focused out of
  */
 function markAsTouched(element) {
-    validators[dataType].find(x => x.field === element.id).touched = true;
+    validators[dataType][element.id].touched = true;
 }
 
 /**
  * Validates a value against a regular expression
  * and if invalid it highlights the invalid field
- * @param fieldNumber the id of the field being validator
+ * @param field the id of the field being validator
  * @param value the value being tested
  * @param submitting if true, the user is trying to submit
  */
-function validate(fieldNumber, value, submitting = false) {
+function validate(field, value, submitting = false) {
     // get the field being evaluated
-    var fieldObject = validators[dataType][fieldNumber];
+    var validatorObject = validators[dataType][field];
 
     // check that this field was even touched in the first place
-    if (!fieldObject.touched && !submitting) {
+    if (!validatorObject.touched && !submitting) {
         return false;
     }
 
     // get the regex validators for that field
-    var regex = new RegExp(fieldObject.regex);
+    var regex = new RegExp(validatorObject.regex);
 
 
     // check if its not set
     if (value === '') {
         // check if its required
-        if (fieldObject.required) {
+        if (validatorObject.required) {
             // not set so failed
-            setErrorMessage(fieldObject.field, 'Required', true, 'red');
+            setErrorMessage(field, 'Required', true, 'red');
             return true;
         }
         // not required so success
         return false;
     }
     // test regex
-    if (!fieldObject.regex || regex.test(value)) {
+    if (!validatorObject.regex || regex.test(value)) {
         // success
-        setErrorMessage(fieldObject.field, '✔', false, 'green');
+        setErrorMessage(field, '✔', false, 'green');
         return false;
     } else {
         // failed
-        setErrorMessage(fieldObject.field, 'Not valid', true, 'red');
+        setErrorMessage(field, 'Not valid', true, 'red');
         return true;
     }
 }
@@ -172,22 +169,22 @@ function validate(fieldNumber, value, submitting = false) {
  */
 function validateAllFields(data) {
     var success = true;
-    for (let i = 0; i < data.length; i++) {
-        if (validate(i, data[i], true)) success = false;
-    }
+    Object.keys(data).forEach(key => {
+        if (validate(key, data[key], true)) success = false;
+    });
     return !success;
 }
 
-function findLableForControl(idVal) {
+function findLablelForControl(idVal) {
     labels = document.getElementsByTagName('label');
-    for( var i = 0; i < labels.length; i++ ) {
+    for (var i = 0; i < labels.length; i++) {
         if (labels[i].htmlFor === idVal)
             return labels[i];
     }
 }
 
 function setErrorMessage(fieldID, message, failed, color = null) {
-    var label = findLableForControl(fieldID);
+    var label = findLablelForControl(fieldID);
     label.innerHTML = message;
     if (color) label.style.color = color;
     document.getElementById(fieldID).setAttribute('aria-invalid', failed);
