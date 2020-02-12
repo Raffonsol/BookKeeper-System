@@ -92,6 +92,17 @@ con.connect(function(err) {
         "date DATE NOT NULL, " +
         "time TIME NOT NULL);" +
 
+        "INSERT INTO employee (name, job Description, email, phoneNumber) VALUES" +
+        "('Paul', 'Librarian' 'paulthelibrarian@bookkeeper.com', null)," +
+        "('Taylor', 'Manager' 'taylor_boss@bookkeeper.com', null)," +
+        "('Sophia', 'IT Technician' 'sophia32@bookkeeper.com', null)," +
+        "('guest', 'default' null, null);" +
+
+        "INSERT INTO role (roleName, description, accessLevel) VALUES" +
+        "('admin', 'full system control', '0')," +
+        "('librarian', 'manages books and users', '1')," +
+        "('support', 'manages accounts and suppliers', '2')," +
+        "('guest', 'read only access', '3')," +
         "";
 
     con.query(sql, function (err, result) {
