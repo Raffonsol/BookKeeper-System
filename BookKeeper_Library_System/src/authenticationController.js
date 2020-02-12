@@ -21,12 +21,13 @@ var activeRole = 'admin';
  * then changes their style to be displayed
  */
 function enableAccessiblePages() {
+    // delay enabling of sections to make sure the page is fully loaded
     setTimeout( () => {
         var forbiddenElements = document.getElementsByClassName(activeRole);
         for (let i = 0; i < forbiddenElements.length ; i++) {
-            forbiddenElements[i].style.display = 'block';
+            forbiddenElements[i].style.display = 'flex';
         }
-    }, 10);
+    }, 100);
 }
 
 /**

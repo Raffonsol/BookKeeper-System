@@ -20,7 +20,7 @@ con.connect(function(err) {
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
         "title VARCHAR(150) NOT NULL," +
         "author VARCHAR(100) NOT NULL, " +
-        "genre INT NOT NULL, " +
+        "genre VARCHAR(100) NOT NULL, " +
         "publishDate DATE, " +
         "edition VARCHAR(100)," +
         "shelf INT," +
