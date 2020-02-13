@@ -78,9 +78,21 @@ function submitData() {
 
 function submitBooks(formData) {
 
-    var sql = `SELECT * from book WHERE book.title = ${formData[1]}`;
-    var result = con.query(sql);
-    console.log(result);
+    const url='http://localhost:3000/books';
+    $.ajax({
+        url: url,
+        data: formData,
+        type: 'POST',
+        success: res => console.log(res),
+        error: err => console.log(`Error ${err}`)
+    })
+    // const Http = new XMLHttpRequest();
+    // Http.open("GET", url);
+    // Http.send();
+    //
+    // Http.onreadystatechange = (e) => {
+    //     console.log(Http.responseText)
+    // };
     // var sql = `INSERT INTO book ( title, author, genre, publisherDate, edition, shelf, isbn) VALUES ()`;
 
 }
