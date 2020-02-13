@@ -3,18 +3,18 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    password: "root",
     database: "BookKeeper_System",
     multipleStatements: true
 
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
     var sql = "SET FOREIGN_KEY_CHECKS = 0;" +
 
-        "DROP TABLES IF EXISTS book, supplier, bookunit, role, employee, employeeaccount, memberaccount, loan, transaction;" +
+        "DROP TABLE IF EXISTS book, supplier, bookunit, role, employee, employeeaccount, memberaccount, loan, transaction;" +
 
         "CREATE TABLE book (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
@@ -92,17 +92,23 @@ con.connect(function(err) {
         "date DATE NOT NULL, " +
         "time TIME NOT NULL);" +
 
-        "INSERT INTO employee (name, job Description, email, phoneNumber) VALUES" +
-        "('Paul', 'Librarian' 'paulthelibrarian@bookkeeper.com', null)," +
-        "('Taylor', 'Manager' 'taylor_boss@bookkeeper.com', null)," +
-        "('Sophia', 'IT Technician' 'sophia32@bookkeeper.com', null)," +
-        "('guest', 'default' null, null);" +
+        "INSERT INTO employee (`name`, `jobDescription`, `email`, `phoneNumber`) VALUES" +
+        "('Paul', 'Librarian', 'paulthelibrarian@bookkeeper.com', null)," +
+        "('Taylor', 'Manager', 'taylor_boss@bookkeeper.com', null)," +
+        "('Sophia', 'IT Technician', 'sophia32@bookkeeper.com', null)," +
+        "('guest', 'default', 'guest', null);" +
 
-        "INSERT INTO role (roleName, description, accessLevel) VALUES" +
+        "INSERT INTO role (`roleName`, `description`, `accessLevel`) VALUES" +
         "('admin', 'full system control', '0')," +
         "('librarian', 'manages books and users', '1')," +
         "('support', 'manages accounts and suppliers', '2')," +
-        "('guest', 'read only access', '3')," +
+        "('guest', 'read only access', '3');" +
+
+        "INSERT INTO employeeaccount (`employeeId`, `roleId`, `username`, `password`) VALUES" +
+        "(1, 2, 'paul', '123')," +
+        "(2, 1, 'taylor', '123')," +
+        "(3, 3, 'sophia', '123')," +
+        "(4, 4, 'guest', '123');" +
         "";
 
     con.query(sql, function (err, result) {
