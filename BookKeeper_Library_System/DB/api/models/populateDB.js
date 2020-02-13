@@ -87,8 +87,6 @@ con.connect(function (err) {
         "FOREIGN KEY (employeeId) REFERENCES employee(id), " +
         "memberId INT," +
         "FOREIGN KEY (memberId) REFERENCES memberaccount(id), " +
-        "memberAccount INT, " +
-        "FOREIGN KEY (memberAccount) REFERENCES loan(id), " +
         "date DATE NOT NULL, " +
         "time TIME NOT NULL);" +
 
