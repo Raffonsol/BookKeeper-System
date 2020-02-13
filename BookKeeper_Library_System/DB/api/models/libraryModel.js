@@ -10,6 +10,7 @@ var Book = function(book){
     this.shelf = book.shelf;
     this.isbn = book.isbn;
     this.supplier = book.supplier;
+    this.units = book.units;
 };
 Book.createBook = function (newBook, result) {
     var bookID;
@@ -55,18 +56,21 @@ Book.createBook = function (newBook, result) {
                         console.log('found supplier: ', res);
                         supplierID = res[0].id;
 
-                        // use found supplier to create book unit
-                        sql.query("INSERT INTO bookunit set ?", {bookId: bookID, supplierId: supplierID, acquiringDate: new Date()}, function (err, res) {
-                            if(err) {
-                                console.log("error: ", err);
-                                result(err, null);
-                            }
-                            else{
-                                bookID = res.insertId;
-                                console.log('bookunit id:', res.insertId);
-                                result(null, res.insertId);
-                            }
-                        });
+                        // for each unit that was requested
+                        for (let i = 0; i < newBook.units ; i++) {
+                            // use found supplier to create book unit
+                            sql.query("INSERT INTO bookunit set ?", {bookId: bookID, supplierId: supplierID, acquiringDate: new Date()}, function (err, res) {
+                                if(err) {
+                                    console.log("error: ", err);
+                                    result(err, null);
+                                }
+                                else{
+                                    bookID = res.insertId;
+                                    console.log('bookunit id:', res.insertId);
+                                }
+                            });
+                        }
+                        result(null, res.insertId);
                     }
                 }
             });
