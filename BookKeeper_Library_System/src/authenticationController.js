@@ -1,4 +1,3 @@
-
 /*
 // full website control
 'admin',
@@ -13,7 +12,10 @@
 'guest'
 */
 
-var activeRole = 'admin';
+var user = {
+    activeRole: 'guest',
+    loggedIn: false,
+};
 
 /**
  * All header links are loaded but not displayed.
@@ -22,9 +24,9 @@ var activeRole = 'admin';
  */
 function enableAccessiblePages() {
     // delay enabling of sections to make sure the page is fully loaded
-    setTimeout( () => {
-        var forbiddenElements = document.getElementsByClassName(activeRole);
-        for (let i = 0; i < forbiddenElements.length ; i++) {
+    setTimeout(() => {
+        var forbiddenElements = document.getElementsByClassName(user.activeRole);
+        for (let i = 0; i < forbiddenElements.length; i++) {
             forbiddenElements[i].style.display = 'flex';
         }
     }, 100);
@@ -37,5 +39,28 @@ function enableAccessiblePages() {
  * @returns {boolean} authentication success
  */
 function hasPermission(permittedRoles) {
-    return (permittedRoles.includes(activeRole));
+    return (permittedRoles.includes(user.activeRole));
 }
+
+var loginSection = {
+
+    load: () => {
+        setTimeout(() => {
+            loginSection.displayHiddenSection();
+        }, 100);
+    },
+
+    displayHiddenSection: () => {
+        var loggedUser = sessionStorage.getItem('loggedUser');
+        if (loggedUser) {
+            // already logged in, show interface
+            document.getElementById('screen_welcome').style.display = 'flex';
+        } else {
+            // not logged in, show login/register menu
+            document.getElementById('screen_login').style.display = 'flex';
+        }
+    },
+
+
+
+};

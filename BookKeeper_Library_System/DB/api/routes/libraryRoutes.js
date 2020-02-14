@@ -1,14 +1,71 @@
 'use strict';
 module.exports = function(app) {
-    var library = require('../controllers/libraryController');
+    var books = require('../controllers/libraryController');
+    var user = require('../controllers/userController');
+    var supplier = require('../controllers/supplierController');
+    var loan = require('../controllers/loanController');
+    var employeeAccount = require('../controllers/employeeAccountController');
+    var transaction = require('../controllers/transactionController');
+    var role = require('../controllers/roleController');
 
-    // todoList Routes
+    // book Routes
     app.route('/books')
-        .get(library.list_all_books)
-        .post(library.create_a_book);
+        .get(books.list_all_books)
+        .post(books.create_a_book);
 
     app.route('/books/:bookId')
-        .get(library.read_a_book)
-        .put(library.update_a_book)
-        .delete(library.delete_a_book);
+        .get(books.read_a_book)
+        .put(books.update_a_book)
+        .delete(books.delete_a_book);
+
+    // user Routes
+    app.route('/users')
+        .get(user.list_all_users)
+        .post(user.create_a_user);
+
+    app.route('/users/:userId')
+        .get(user.read_a_user)
+        .put(user.update_a_user)
+        .delete(user.delete_a_user);
+
+    // supplier Routes
+    app.route('/suppliers')
+        .get(supplier.list_all_suppliers)
+        .post(supplier.create_a_supplier);
+
+    app.route('/suppliers/:supplierId')
+        .get(supplier.read_a_supplier)
+        .put(supplier.update_a_supplier)
+        .delete(supplier.delete_a_supplier);
+
+    // loan Routes
+    app.route('/loans')
+        .get(loan.list_all_loans)
+        .post(loan.create_a_loan);
+
+    app.route('/loans/:loanId')
+        .get(loan.read_a_loan)
+        .put(loan.update_a_loan)
+        .delete(loan.delete_a_loan);
+
+    // employeeAccount Routes
+    app.route('/employeeAccounts')
+        .get(employeeAccount.list_all_employeeAccounts)
+        .post(employeeAccount.create_a_employeeAccount);
+
+    app.route('/employeeAccounts/:employeeAccountId')
+        .get(employeeAccount.read_a_employeeAccount)
+        .put(employeeAccount.update_a_employeeAccount)
+        .delete(employeeAccount.delete_a_employeeAccount);
+
+    // transaction Routes
+    app.route('/transactions')
+        .get(transaction.list_all_transactions);
+
+    app.route('/transactions/:transactionId')
+        .get(transaction.read_a_transaction);
+
+    // role Route
+    app.route('/roles')
+        .get(role.list_all_roles);
 };

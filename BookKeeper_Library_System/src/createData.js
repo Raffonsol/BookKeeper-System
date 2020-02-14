@@ -6,7 +6,7 @@ var dataType = null;
  */
 $(() => {
     setTimeout( () => {
-        var forbiddenElements = document.getElementsByClassName(activeRole);
+        var forbiddenElements = document.getElementsByClassName(user.activeRole);
         for (let i = 0; i < forbiddenElements.length ; i++) {
             forbiddenElements[i].style.display = 'inline';
         }
