@@ -13,7 +13,10 @@
 'guest'
 */
 
-var activeRole = 'admin';
+var user = {
+    activeRole: 'guest',
+    loggedIn: false,
+};
 
 /**
  * All header links are loaded but not displayed.
