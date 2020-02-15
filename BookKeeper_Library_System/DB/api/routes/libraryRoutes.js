@@ -58,6 +58,9 @@ module.exports = function(app) {
         .put(employeeAccount.update_a_employeeAccount)
         .delete(employeeAccount.delete_a_employeeAccount);
 
+    app.route('/employeeAccounts/validate/:employeeUsername')
+        .get(employeeAccount.read_employeeAccount_from_username);
+
     // transaction Routes
     app.route('/transactions')
         .get(transaction.list_all_transactions);

@@ -1,4 +1,6 @@
 
+var hostUrl = 'http://localhost:3000/';
+
 // validators
 var validators = {
     book: {
@@ -78,7 +80,7 @@ function submitData() {
 
 function submitBooks(formData) {
 
-    const url='http://localhost:3000/books';
+    const url= hostUrl + 'books';
     $.ajax({
         url: url,
         data: formData,
@@ -86,15 +88,6 @@ function submitBooks(formData) {
         success: res => console.log(res),
         error: err => console.log(`Error ${err}`)
     })
-    // const Http = new XMLHttpRequest();
-    // Http.open("GET", url);
-    // Http.send();
-    //
-    // Http.onreadystatechange = (e) => {
-    //     console.log(Http.responseText)
-    // };
-    // var sql = `INSERT INTO book ( title, author, genre, publisherDate, edition, shelf, isbn) VALUES ()`;
-
 }
 
 function editBook() {
@@ -195,8 +188,18 @@ function findLablelForControl(idVal) {
     }
 }
 
+/**
+ * set error message on label for element matching
+ * passed in id, if label does not exist, sets
+ * message on the element matching given id
+ * @param fieldID
+ * @param message
+ * @param failed
+ * @param color
+ */
 function setErrorMessage(fieldID, message, failed, color = null) {
     var label = findLablelForControl(fieldID);
+    if (!label) {console.log(fieldID); label = document.getElementById(fieldID);}
     label.innerHTML = message;
     if (color) label.style.color = color;
     document.getElementById(fieldID).setAttribute('aria-invalid', failed);

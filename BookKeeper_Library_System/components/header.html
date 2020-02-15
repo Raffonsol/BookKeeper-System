@@ -13,16 +13,19 @@
         <div class="nav-item"><button class="nav-link admin librarian support" onclick="navigate('pages/users.html', ['admin', 'librarian', 'support'])">Users</button></div>
         <div class="nav-item"><button class="nav-link admin librarian support" onclick="navigate('pages/loans.html', ['admin', 'librarian', 'support'])">Loans</button></div>
         <div class="nav-item"><button class="nav-link admin librarian support" onclick="navigate('pages/createData.html', ['admin', 'librarian', 'support'])">New</button></div>
-        <div  class="nav-item" id="login">
-            <div id="screen_login">
-                <span>not logged in</span>
-                <button class="log-link">login</button>
+        <div  class="nav-item dropdown" id="login">
+            <button onclick="dropdown()" class="dropbtn">...</button>
+            <div id="myDropdown" class="dropdown-content">
+                <div id="screen_login">
+                    <span class="menu-text">not logged in</span>
+                    <button class="log-link" onclick="navigate('components/loginForm.html', [])">login</button>
 
-            </div>
-            <div id="screen_welcome">
-                <span>logged as Roberto</span>
-                <button class="log-link">logout</button>
-                <button class="log-link admin">create user</button>
+                </div>
+                <div id="screen_welcome">
+                    <span id="logged_user" class="menu-text">logged as Roberto</span>
+                    <button class="log-link">logout</button>
+                    <button class="log-link admin">create user</button>
+                </div>
             </div>
         </div>
     </div>
