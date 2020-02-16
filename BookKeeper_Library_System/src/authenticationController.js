@@ -17,7 +17,7 @@ var user = {
     user: null,
     loggedIn: false,
 
-    login: () => {
+    onLogin: () => {
         var responseMsg = 'Validation not completed';
         var attemptedUsername = document.getElementById('login_username').value;
         var attemptedPassword = document.getElementById('login_password').value;
@@ -39,13 +39,14 @@ var user = {
                     if (res[0].password === attemptedPassword) {
                         responseMsg = 'Authentication Successful';
                         user.activeRole = res[0].roleName;
-                        console.log('0', JSON.stringify(this.activeRole));
                         user.user = res[0].username;
                         user.loggedIn = true;
                         success = true;
-                        loginSection.displayHiddenLoginSection();
-                        loginSection.enableAccessiblePages();
-                        document.getElementById('logged_user').innerText = 'logged as '+ user.user
+                        user.login();
+                        sessionStorage.setItem('loggedIn', true);
+                        sessionStorage.setItem('activeRole', user.activeRole);
+                        sessionStorage.setItem('user', user.user);
+
                     } else {
                         responseMsg = 'Invalid password';
                     }
@@ -59,7 +60,24 @@ var user = {
         });
 
 
+    },
+    login: () => {
+        loginSection.displayHiddenLoginSection();
+        loginSection.enableAccessiblePages();
+        navigate('pages/home');
+        if (user.user) document.getElementById('logged_user').innerText = 'logged as '+ user.user
+    },
+
+    logout: () => {
+        user = {loggedIn: false, user: '', activeRole: 'guest'};
+        sessionStorage.removeItem('loggedIn');
+        sessionStorage.removeItem('activeRole');
+        sessionStorage.removeItem('user');
+        loginSection.displayHiddenLoginSection();
+        loginSection.enableAccessiblePages();
+        window.location.reload();
     }
+
 };
 
 /**
@@ -69,15 +87,21 @@ var user = {
  * @returns {boolean} authentication success
  */
 function hasPermission(permittedRoles) {
-    return (permittedRoles.includes(user.activeRole));
+    return (permittedRoles && permittedRoles.includes(user.activeRole));
 }
 
 var loginSection = {
 
     load: () => {
+        var loggedUser = sessionStorage.getItem('loggedIn');
+        console.log(loggedUser);
+        if (loggedUser) {
+            user.loggedIn = loggedUser;
+            user.activeRole = sessionStorage.getItem('activeRole');
+            user.user = sessionStorage.getItem('user');
+        }
         setTimeout(() => {
-            loginSection.displayHiddenLoginSection();
-            loginSection.enableAccessiblePages();
+            user.login();
         }, 100);
     },
 
@@ -86,8 +110,8 @@ var loginSection = {
      * or as no one logged in.
      */
     displayHiddenLoginSection: () => {
-        var loggedUser = sessionStorage.getItem('loggedUser');
-        if ((!user.loggedIn && loggedUser) || user.loggedIn) {
+
+        if (user.loggedIn) {
             // already logged in, show interface
             document.getElementById('screen_welcome').style.display = 'flex';
             document.getElementById('screen_login').style.display = 'none';

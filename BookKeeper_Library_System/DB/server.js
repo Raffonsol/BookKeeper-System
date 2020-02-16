@@ -37,7 +37,7 @@ con.connect(function (err) {
             // User input exit.
             if (name === 'y') {
                 // populate DB
-                var populateDB = require('./populateDB.js');
+                require('./populateDB.js');
             }
         });
 

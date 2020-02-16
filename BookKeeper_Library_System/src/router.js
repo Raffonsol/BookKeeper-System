@@ -5,7 +5,7 @@
  * @param users users that have access to this page
  */
 function navigate(pageURL, users) {
-    if (users.length === 0 || hasPermission(users)) {
+    if (users && users.length === 0 || hasPermission(users)) {
         $("#content").load(pageURL);
     }
 
