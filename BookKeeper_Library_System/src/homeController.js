@@ -53,12 +53,15 @@ var home = {
     },
 
     showPreviewResults: () => {
-        $("#overdueResults").load('components/previewResults.html');
-        $("#historyResults").load('components/previewResults.html');
-        $("#trendingResults").load('components/previewResults.html');
-        viewBooks('#overdueList');
-        viewBooks('#historyList');
-        viewBooks('#trendingList');
+        setTimeout( () => {
+            $("#overdueResults").load('components/previewResults.html');
+            $("#historyResults").load('components/previewResults.html');
+            $("#trendingResults").load('components/previewResults.html');
+            viewBooks(null, '#historyList');
+            viewLoan(null, '#overdueList');
+            viewBooks(null, '#trendingList');
+        }, 200);
+
     }
 
 };

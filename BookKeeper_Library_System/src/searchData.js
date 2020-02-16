@@ -14,15 +14,15 @@ function viewBooks(rule = null, table = '#bookSearchTable') {
 
                 res =
 
-                $(table).append(
-                    $.map(res, function (ignore, index) {
-                        return '<tr><td>' + res[index].isbn +
-                            '</td><td>' + res[index].title +
-                            '</td><td>' + res[index].author +
-                            '</td><td>' + res[index].genre +
-                            '</td><td>' + res[index].publishDate +
-                            '</td></tr>';
-                    }).join());
+                    $(table).append(
+                        $.map(res, function (ignore, index) {
+                            return '<tr><td>' + res[index].isbn +
+                                '</td><td>' + res[index].title +
+                                '</td><td>' + res[index].author +
+                                '</td><td>' + res[index].genre +
+                                '</td><td>' + res[index].publishDate +
+                                '</td></tr>';
+                        }).join());
 
             },
             error: err => console.log(`Error ${err}`)
@@ -104,6 +104,7 @@ function openLoanForm() {
 }
 
 var hoveredId = null;
+
 function theHoverShit(id) {
     hoveredId = id;
 }
@@ -126,7 +127,7 @@ function viewLoan() {
         type: 'GET',
         success: res => {
 
-            if (res[0].id === undefined) {
+            if (res.length < 1) {
                 return;
             }
 
@@ -172,8 +173,8 @@ function filterData() {
 
 function runRule(rule, list) {
     if (rule === 'overDue') {
-        return list.map( book => {
-            
+        return list.map(book => {
+            // return book.
         })
     }
 }
