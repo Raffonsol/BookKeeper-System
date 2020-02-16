@@ -6,7 +6,6 @@ var home = {
         home.getSupplierCount();
         home.getLoanCount();
         home.showPreviewResults();
-        viewBooks('.bookTable');
     },
 
     getBookCount: () => {
@@ -57,6 +56,9 @@ var home = {
         $("#overdueResults").load('components/previewResults.html');
         $("#historyResults").load('components/previewResults.html');
         $("#trendingResults").load('components/previewResults.html');
+        viewBooks('#overdueList');
+        viewBooks('#historyList');
+        viewBooks('#trendingList');
     }
 
 };

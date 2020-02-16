@@ -1,8 +1,9 @@
 /**
  * search for books
+ * @param rule
  * @param table
  */
-function viewBooks(table = '#bookSearchTable') {
+function viewBooks(rule = null, table = '#bookSearchTable') {
 
     setTimeout(x => {
         const url = hostUrl + 'books';
@@ -11,8 +12,7 @@ function viewBooks(table = '#bookSearchTable') {
             type: 'GET',
             success: res => {
 
-                console.log((res));
-                console.log(JSON.stringify(res[0].isbn));
+                res =
 
                 $(table).append(
                     $.map(res, function (ignore, index) {
@@ -186,4 +186,12 @@ function filterData() {
         }
     }
 
+}
+
+function runRule(rule, list) {
+    if (rule === 'overDue') {
+        return list.map( book => {
+            
+        })
+    }
 }
