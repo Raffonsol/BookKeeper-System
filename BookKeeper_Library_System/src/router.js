@@ -10,7 +10,8 @@ function navigate(pageURL, users = []) {
         setTimeout( ()=> {
             loginSection.enableAccessiblePages();
 
-            if (pageURL.includes('home')) home.load()
+            if (pageURL.includes('home')) home.load();
+            if (pageURL.includes('bookSearch')) viewBooks();
         }, 200);
     }
 }
