@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50b3fd1b-9fb4-4fc2-b71d-37f8d3bcc3a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/loanForm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/loanSearch.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB/api/models/loanModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/api/models/loanModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/components/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/loans.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/userSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/userSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/createData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/loanForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/components/loanForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/loanSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/loanSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/formControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/formControl.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/searchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/searchData.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

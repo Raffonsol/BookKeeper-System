@@ -45,11 +45,6 @@ function viewSuppliers() {
                 return;
             }
 
-            // $.forEach(res.id, function (i, item) {
-            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
-            // })
-            // writeBooks();
-
             $('#supplierSearchTable').append(
                 $.map(res, function (ignore, index) {
                     return '<tr><td>' + res[index].id +
@@ -75,12 +70,6 @@ function viewUser() {
             if (res[0].id === undefined) {
                 return;
             }
-
-            // $.forEach(res.id, function (i, item) {
-            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
-            // })
-            // writeBooks();
-
 
             var docs = document.getElementById('userSearchTable');
             for (var i = 0; i < res.length; i++) {
@@ -137,16 +126,9 @@ function viewLoan() {
         type: 'GET',
         success: res => {
 
-            console.log((res));
-            console.log(JSON.stringify(res[0].id));
             if (res[0].id === undefined) {
                 return;
             }
-
-            // $.forEach(res.id, function (i, item) {
-            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
-            // })
-            // writeBooks();
 
             $('#loanSearchTable').append(
                 $.map(res, function (ignore, index) {

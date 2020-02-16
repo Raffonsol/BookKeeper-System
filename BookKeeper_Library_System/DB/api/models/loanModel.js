@@ -9,7 +9,7 @@ var Loan = function (loan) {
     this.isbn = loan.isbn;
 
     var today = new Date();
-    this.dueDate = today.setDate(today.getDate() + loan.loanDays);
+    this.dueDate = today.setDate(today.getDate() + loan.loanDuration);
 };
 
 Loan.createLoan = function (newLoan, result) {
