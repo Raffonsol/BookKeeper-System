@@ -83,6 +83,22 @@ function submitData() {
     })
 }
 
+function getData() {
+    var formData = window[`${dataType}Data`]();
+    if (validateAllFields(formData)) {
+        return;
+    }
+
+    console.log('submitted', formData);
+    const url= hostUrl + dataType + 's';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: res => console.log(res),
+        error: err => console.log(`Error ${err}`)
+    })
+}
+
 
 
 

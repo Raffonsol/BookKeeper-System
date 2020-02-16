@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <input type="text" id="searchBooks" class="searchBar" onkeyup="searchData()" placeholder="Filter Books..">
+<input type="text" id="searchBooks" class="searchBar" onkeyup="filterData()" placeholder="Filter Books..">
 
-    <br/>
-    <br/>
+<br/>
+<br/>
 
-    <table id="myTable">
+<table id="bookTable" class="searchTables">
+    <thead>
         <tr class="searchTopRow">
             <th class="searchHeaders">ISBN</th>
             <th class="searchHeaders">title</th>
@@ -14,7 +15,10 @@
             <th class="searchHeaders">Genre</th>
             <th class="searchHeaders">Publish Date</th>
         </tr>
+    </thead>
+    <tbody id="bookSearchTable">
+    </tbody>
 
-    </table>
+</table>
 
 </html>
