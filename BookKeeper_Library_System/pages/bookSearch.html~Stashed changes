@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <input type="text" id="searchBooks" class="searchBar" onkeyup="searchData()" placeholder="Filter Books..">
+
+    <br/>
+    <br/>
+
+    <table id="myTable">
+        <tr class="searchTopRow">
+            <th class="searchHeaders">ISBN</th>
+            <th class="searchHeaders">title</th>
+            <th class="searchHeaders">Author</th>
+            <th class="searchHeaders">Genre</th>
+            <th class="searchHeaders">Publish Date</th>
+        </tr>
+
+    </table>
+
+</html>

@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50b3fd1b-9fb4-4fc2-b71d-37f8d3bcc3a0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/searchData.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/bookSearch.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/searchData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/api/routes/libraryRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/api/routes/libraryRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/searchBookForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/searchBook.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/bookSearch.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/searchBook.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/formControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/formControl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -25,7 +29,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1XJI5SAdHGRAS92XBU4Bt7E0h1m" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
