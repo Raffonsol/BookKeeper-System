@@ -68,10 +68,15 @@ Book.createBook = function (newBook, result) {
                                 } else {
                                     bookID = res.insertId;
                                     console.log('bookunit id:', res.insertId);
+
+                                    // if it's the last one then send a response of success
+                                    if (i === newBook.units - 1) {
+                                        console.log('successful book unit population');
+                                        result(null, res.insertId);
+                                    }
                                 }
                             });
                         }
-                        result(null, res.insertId);
                     }
 
             });
