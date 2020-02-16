@@ -16,16 +16,16 @@ const { exec } = require('child_process');
 
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
+var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: ""
 });
 
-con.connect(function (err) {
+connection.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    con.query("CREATE DATABASE IF NOT EXISTS BookKeeper_System", function (err, result) {
+    connection.query("CREATE DATABASE IF NOT EXISTS BookKeeper_System", function (err, result) {
         if (err) throw err;
         console.log("Database created");
 
@@ -44,6 +44,8 @@ con.connect(function (err) {
         //
     });
 });
+
+module.exports = connection;
 
 app.listen(port);
 

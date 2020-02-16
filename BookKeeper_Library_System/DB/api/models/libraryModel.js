@@ -110,7 +110,7 @@ Book.getAllBooks = function (result) {
     });
 };
 Book.countAllBooks = function (result) {
-    sql.query("COUNT * from bookunit", function (err, res) {
+    sql.query("COUNT * from bookunit WHERE inStore = true", function (err, res) {
 
         if (err) {
             console.log("error: ", err);
