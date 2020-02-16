@@ -68,7 +68,7 @@ Loan.getAllLoans = function (result) {
     });
 };
 Loan.countAllActiveLoans = function (result) {
-    sql.query("Select Count(*) from loan where completed = false", function (err, res) {
+    sql.query("SELECT COUNT(*) FROM loan WHERE completed = false", function (err, res) {
 
         if (err) {
             console.log("error: ", err);

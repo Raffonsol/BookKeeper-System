@@ -1,38 +1,34 @@
 /**
  * search for books
- * @param formData
+ * @param table
  */
+function viewBooks(table = '#bookSearchTable') {
 
+    setTimeout( x => {
+        const url = hostUrl + 'books';
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: res => {
 
-function viewBooks() {
+                console.log((res));
+                console.log(JSON.stringify(res[0].isbn));
 
-    const url = hostUrl + 'books';
-    $.ajax({
-        url: url,
-        type: 'GET',
-        success: res => {
-
-            console.log((res));
-            console.log(JSON.stringify(res[0].isbn));
-
-            // $.forEach(res.id, function (i, item) {
-            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
-            // })
-            // writeBooks();
-
-            $('#bookSearchTable').append(
-                $.map(res, function (ignore, index) {
-                    return '<tr><td>' + res[index].isbn +
+                $(table).append(
+                    $.map(res, function (ignore, index) {
+                        return '<tr><td>' + res[index].isbn +
                             '</td><td>' + res[index].title +
                             '</td><td>' + res[index].author +
                             '</td><td>' + res[index].genre +
                             '</td><td>' + res[index].publishDate +
-                        '</td></tr>';
-                }).join());
+                            '</td></tr>';
+                    }).join());
 
             },
-        error: err => console.log(`Error ${err}`)
+            error: err => console.log(`Error ${err}`)
         })
+    }, 200);
+
 }
 
 function writeBooks(res) {

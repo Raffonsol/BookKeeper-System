@@ -5,7 +5,7 @@ var User = function (user) {
     this.name = user.name;
     this.email = user.email;
     this.phoneNumber = user.phone;
-    this.createdBy = user.createcreatedBy;
+    this.createdBy = user.createdBy;
 
 };
 

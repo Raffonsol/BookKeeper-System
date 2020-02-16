@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+.smallFont {
+    font-size: 4px;
+}
+
 #parent {
     margin-left: 20%;
     margin-right: 20%;
@@ -208,19 +212,25 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] {
     font-family: "Times New Roman", serif;
 }
 
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 .homeSection {
     padding: 2%;
     margin: 3%;
     border: 1px solid black;
     flex-wrap: nowrap;
     flex-direction: column;
+    width: 37%;
 }
 
 .homeSectionTitle {
     padding: 1%;
     margin-bottom: 1%;
     display: flex;
-    width: 97%;
+    width: 100%;
 
 
     justify-content: space-between;
