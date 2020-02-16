@@ -1,5 +1,5 @@
 'user strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var Book = function (book) {
     this.supplier = book.supplier;

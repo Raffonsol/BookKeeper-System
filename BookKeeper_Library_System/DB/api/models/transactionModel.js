@@ -1,5 +1,5 @@
 'transaction strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var Transaction = function (transaction) {
 

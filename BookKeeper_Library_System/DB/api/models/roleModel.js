@@ -1,5 +1,5 @@
 'role strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var Role = function (role) {
 

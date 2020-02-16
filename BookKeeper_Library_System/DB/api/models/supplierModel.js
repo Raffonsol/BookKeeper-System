@@ -1,5 +1,5 @@
 'supplier strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var Supplier = function (supplier) {
     this.name = supplier.supplierName;

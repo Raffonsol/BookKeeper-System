@@ -1,11 +1,11 @@
 'user strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var User = function (user) {
     this.name = user.name;
     this.email = user.email;
     this.phoneNumber = user.phone;
-    this.createdBy = user.createdBy;
+    this.createdBy = user.createcreatedBy;
 
 };
 

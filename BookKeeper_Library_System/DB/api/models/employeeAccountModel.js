@@ -1,5 +1,5 @@
 'employeeAccount strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var EmployeeAccount = function (employeeAccount) {
     this.name = employeeAccount.name.replace(

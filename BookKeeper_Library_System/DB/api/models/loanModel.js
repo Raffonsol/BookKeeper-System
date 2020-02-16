@@ -1,5 +1,5 @@
 'loan strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var Loan = function (loan) {
     this.transactionId = null;
