@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "",
     database: "BookKeeper_System",
     multipleStatements: true
 
@@ -17,14 +17,14 @@ con.connect(function (err) {
         "DROP TABLE IF EXISTS book, supplier, bookunit, role, employee, employeeaccount, memberaccount, loan, transaction;" +
 
         "CREATE TABLE book (" +
-        "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+        "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
+        "isbn VARCHAR(11) NOT NULL, " +
         "title VARCHAR(150) NOT NULL," +
         "author VARCHAR(100) NOT NULL, " +
         "genre VARCHAR(100) NOT NULL, " +
         "publishDate DATE, " +
         "edition VARCHAR(100)," +
-        "shelf INT," +
-        "isbn VARCHAR(11));" +
+        "shelf INT);" +
 
         "CREATE TABLE supplier (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
@@ -113,5 +113,7 @@ con.connect(function (err) {
         if (err) throw err;
         console.log("Table created");
         console.log(sql);
+
+        var index = require
     });
 });
