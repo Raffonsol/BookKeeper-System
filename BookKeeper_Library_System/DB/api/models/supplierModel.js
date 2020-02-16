@@ -45,6 +45,18 @@ Supplier.getAllSuppliers = function (result) {
         }
     });
 };
+Supplier.countAllSuppliers = function (result) {
+    sql.query("SELECT COUNT(*) from supplier", function (err, res) {
+
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('suppliers : ', res);
+            result(null, res);
+        }
+    });
+};
 Supplier.updateById = function (id, supplier, result) {
     sql.query("UPDATE supplier SET name = ? WHERE id = ?", [supplier.name, id], function (err, res) {
         if (err) {

@@ -61,6 +61,19 @@ User.getAllUsers = function (result) {
         }
     });
 };
+
+User.countAllUsers = function (result) {
+    sql.query("SELECT COUNT(*) from memberaccount", function (err, res) {
+
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('users : ', res);
+            result(null, res);
+        }
+    });
+};
 User.updateById = function (id, user, result) {
     sql.query("UPDATE memberaccount SET name = ? WHERE id = ?", [user.name, id], function (err, res) {
         if (err) {
