@@ -9,7 +9,7 @@ function navigate(pageURL, users) {
         $("#content").load(pageURL);
         setTimeout( ()=> {
             loginSection.enableAccessiblePages();
-        }, 100);
+        }, 200);
 
     }
 

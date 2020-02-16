@@ -208,18 +208,12 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] {
     font-family: "Times New Roman", serif;
 }
 
-#statistics {
-    display: flex;
-    flex-direction: column;
-}
-
 .homeSection {
     padding: 2%;
     margin: 3%;
     margin-right: 5.5%;
     border: 1px solid black;
     flex-wrap: nowrap;
-    display: flex;
     flex-direction: column;
 }
 
