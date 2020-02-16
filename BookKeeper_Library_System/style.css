@@ -5,7 +5,7 @@
 }
 
 .smallFont {
-    font-size: 4px;
+    font-size: 14px!important;
 }
 
 #parent {
@@ -275,12 +275,13 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] {
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
 }
-
+table {
+    width: 100%;
+}
 .searchTables th {
     text-align: left; /* Left-align text */
     padding: 12px; /* Add padding */
 }
-
 .searchTables tr {
     /* Add a bottom border to all table rows */
     border-bottom: 1px solid #ddd;
