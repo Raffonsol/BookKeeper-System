@@ -97,13 +97,26 @@ Book.getBookById = function (bookId, result) {
     });
 };
 Book.getAllBooks = function (result) {
-    sql.query("Select * from book", function (err, res) {
+    sql.query("SELECT * from book", function (err, res) {
 
         if (err) {
             console.log("error: ", err);
             result(null, err);
         } else {
             console.log('books : ', res);
+
+            result(null, res);
+        }
+    });
+};
+Book.countAllBooks = function (result) {
+    sql.query("COUNT * from bookunit", function (err, res) {
+
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('books count : ', res);
 
             result(null, res);
         }

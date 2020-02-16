@@ -64,7 +64,7 @@ var user = {
     login: () => {
         loginSection.displayHiddenLoginSection();
         loginSection.enableAccessiblePages();
-        navigate('pages/home');
+        navigate('./pages/home.html');
         if (user.user) document.getElementById('logged_user').innerText = 'logged as '+ user.user
     },
 

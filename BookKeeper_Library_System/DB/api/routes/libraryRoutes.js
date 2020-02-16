@@ -18,8 +18,8 @@ module.exports = function(app) {
         .put(books.update_a_book)
         .delete(books.delete_a_book);
 
-    // app.route('/books/count')
-    //     .get(books.count_books);
+    app.route('/books/count')
+        .get(books.count_books);
 
     // user Routes
     app.route('/users')
