@@ -31,26 +31,71 @@ function viewBooks(table = '#bookSearchTable') {
 
 }
 
-function writeBooks(res) {
+function viewSuppliers() {
 
-    var books = [];
+    const url = hostUrl + 'suppliers';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: res => {
 
-    var i;
-    for (i = 0; i < res.toString().length; i++) {
-        books[i] = new Array(res);
+            console.log((res));
+            console.log(JSON.stringify(res[0].id));
+            if(res[0].id === undefined){
+                return;
+            }
 
-        console.log(books+"  woof woof");
+            // $.forEach(res.id, function (i, item) {
+            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
+            // })
+            // writeBooks();
 
-        var tr = document.createElement('TR');
+            $('#supplierSearchTable').append(
+                $.map(res, function (ignore, index) {
+                    return '<tr><td>' + res[index].id +
+                        '</td><td>' + res[index].name +
+                        '</td><td>' + res[index].about +
+                        '</td><td>' + res[index].website +
+                        '</td></tr>';
+                }).join());
 
+        },
+        error: err => console.log(`Error ${err}`)
+    })
+}
 
-        for (j = 0; j < books[i].length; j++) {
-            var td = document.createElement('TD')
-            td.appendChild(document.createTextNode(books[i][j]));
-            tr.appendChild(td)
-        }
-    }
+function viewUser() {
 
+    const url = hostUrl + 'users';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: res => {
+
+            console.log((res));
+            console.log(JSON.stringify(res[0].id));
+            if(res[0].id === undefined){
+                return;
+            }
+
+            // $.forEach(res.id, function (i, item) {
+            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
+            // })
+            // writeBooks();
+
+            $('#supplierSearchTable').append(
+                $.map(res, function (ignore, index) {
+                    return '<tr><td>' + res[index].id +
+                        '</td><td>' + res[index].createdBy +
+                        '</td><td>' + res[index].name +
+                        '</td><td>' + res[index].email +
+                        '</td><td>' + res[index].phoneNumber +
+                        '</td></tr>';
+                }).join());
+
+        },
+        error: err => console.log(`Error ${err}`)
+    })
 }
 
 function filterData() {

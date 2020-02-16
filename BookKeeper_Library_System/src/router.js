@@ -15,6 +15,8 @@ function navigate(pageURL, users = []) {
 
             if (pageURL.includes('home')) home.load();
             if (pageURL.includes('bookSearch')) viewBooks();
+            if (pageURL.includes('supplierSearch')) viewSuppliers();
+            if (pageURL.includes('userSearch')) viewUser();
 
         }, 200);
     }

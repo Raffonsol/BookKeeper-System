@@ -267,7 +267,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] {
 .searchBar {
 
     background-image: url('./assets/search_icon.png'); /* Add a search icon to input */
-    background-position: 10px 12px; /* Position the search icon */
+    background-position: 2.5px 3px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 93%; /* Full-width */
     font-size: 16px; /* Increase font-size */
