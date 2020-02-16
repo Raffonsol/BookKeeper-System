@@ -7,6 +7,10 @@
 function navigate(pageURL, users) {
     if (users && users.length === 0 || hasPermission(users)) {
         $("#content").load(pageURL);
+        setTimeout( ()=> {
+            loginSection.enableAccessiblePages();
+        }, 100);
+
     }
 
 }

@@ -2,18 +2,10 @@
 var sql = require('../db.js');
 
 var User = function (user) {
+    this.name = user.name;
     this.email = user.email;
-    this.phone = user.phone;
+    this.phoneNumber = user.phone;
     this.createdBy = user.createdBy;
-
-    // Database name will format first and last name to have proper casing and put them together
-    this.name = user.firstName.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    ) + ' ' + user.lastName.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    );
 
 };
 
@@ -21,14 +13,29 @@ User.createUser = function (newUser, result) {
     var userID;
     console.log('newUser:', newUser);
 
-    sql.query("INSERT INTO memberaccount set ?", newUser, function (err, res) {
-
+    sql.query("SELECT * FROM employeeaccount WHERE username = ?", newUser.createdBy, function (err, res) {
+console.log('res', res);
         if (err) {
             console.log("error: ", err);
             result(err, null);
         } else {
-            console.log('user id:', res.insertId);
-            result(null, res);
+            if (res.length >= 1) {
+                newUser.createdBy = res[0].employeeId
+            } else {
+                console.log("error: not logged in");
+                result(err, null);
+            }
+            console.log('newUser:', newUser);
+            sql.query("INSERT INTO memberaccount set ?", newUser, function (err, res) {
+
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else {
+                    console.log('user id:', res.insertId);
+                    result(null, res);
+                }
+            });
         }
     });
 };

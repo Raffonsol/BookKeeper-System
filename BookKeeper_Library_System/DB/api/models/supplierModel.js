@@ -2,7 +2,7 @@
 var sql = require('../db.js');
 
 var Supplier = function (supplier) {
-    this.name = supplier.name;
+    this.name = supplier.supplierName;
     this.about = supplier.about;
     this.website = supplier.website;
 };

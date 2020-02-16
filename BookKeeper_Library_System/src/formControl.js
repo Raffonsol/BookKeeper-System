@@ -10,6 +10,7 @@ var validators = {
         author: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         genre: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         edition: {required: false, regex: null, touched: false},
+        publishDate: {required: false, regex: null, touched: false},
         shelf: {required: false, regex: null, touched: false},
         popularity: {required: false, regex: null, touched: false},
         units: {required: true, regex: null, touched: false},
@@ -24,8 +25,7 @@ var validators = {
         },
     },
     user: {
-        firstName: {required: true, regex: '^[A-Za-z]+$', touched: false},
-        lastName: {required: true, regex: '^[A-Za-z]+$', touched: false},
+        name: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         email: {required: false, regex: '^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$', touched: false},
         phone: {required: false, regex: '^\\(?([0-9]{3})\\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$', touched: false},
     }
@@ -40,6 +40,8 @@ function bookData() {
     form.genre = (document.getElementById('genre').value);
     form.edition = (document.getElementById('edition').value);
     form.publishDate = (document.getElementById('publishDate').value);
+    form.shelf = (document.getElementById('shelf').value);
+    form.popularity = (document.getElementById('popularity').popularity);
     form.units = (document.getElementById('units').value);
     return form;
 }
@@ -54,10 +56,10 @@ function supplierData() {
 
 function userData() {
     var form = {};
-    form.firstName = (document.getElementById('firstName').value);
-    form.lastName = (document.getElementById('lastName').value);
+    form.name = (document.getElementById('name').value);
     form.email = (document.getElementById('email').value);
     form.phone = (document.getElementById('phone').value);
+    form.createdBy = user.user;
     return form;
 }
 
@@ -71,17 +73,7 @@ function submitData() {
     }
 
     console.log('submitted', formData);
-    //TODO: query database to see if this book title already exists
-    // var bookid = result
-    // create book type
-    if (dataType === "book") {
-        submitBooks(formData);
-    }
-}
-
-function submitBooks(formData) {
-
-    const url= hostUrl + 'books';
+    const url= hostUrl + dataType + 's';
     $.ajax({
         url: url,
         data: formData,
@@ -91,13 +83,6 @@ function submitBooks(formData) {
     })
 }
 
-function editBook() {
-    var form = bookData();
-
-    // find the id of the book being edited
-
-    // update
-}
 
 /**
  * search for books
@@ -162,7 +147,7 @@ function validate(field, value, submitting = false) {
     var validatorObject = validators[dataType][field];
 
     // check that this field was even touched in the first place
-    if (!validatorObject.touched && !submitting) {
+    if (!validatorObject || !validatorObject.touched && !submitting) {
         return false;
     }
 

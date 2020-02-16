@@ -102,7 +102,7 @@ var loginSection = {
         }
         setTimeout(() => {
             user.login();
-        }, 100);
+        }, 200);
     },
 
     /**

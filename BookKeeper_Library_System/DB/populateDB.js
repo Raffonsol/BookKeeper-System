@@ -25,7 +25,7 @@ con.connect(function (err) {
         "publishDate DATE, " +
         "edition VARCHAR(100)," +
         "popularity INT," +
-        "shelf INT);" +
+        "shelf VARCHAR(100));" +
 
         "CREATE TABLE supplier (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
@@ -37,7 +37,7 @@ con.connect(function (err) {
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
         "bookId INT," +
         "FOREIGN KEY (bookId) REFERENCES book(id)," +
-        "supplierId INT NOT NULL," +
+        "supplierId INT," +
         "FOREIGN KEY (supplierId) REFERENCES supplier(id)," +
         "acquiringDate DATE); " +
 

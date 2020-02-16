@@ -18,8 +18,8 @@ module.exports = function(app) {
         .put(books.update_a_book)
         .delete(books.delete_a_book);
 
-    app.route('/books/count')
-        .get(books.count_books);
+    // app.route('/books/count')
+    //     .get(books.count_books);
 
     // user Routes
     app.route('/users')
@@ -31,8 +31,8 @@ module.exports = function(app) {
         .put(user.update_a_user)
         .delete(user.delete_a_user);
 
-    app.route('/users/count')
-        .get(user.count_users);
+    // app.route('/users/count')
+    //     .get(user.count_users);
 
     // supplier Routes
     app.route('/suppliers')
@@ -44,8 +44,8 @@ module.exports = function(app) {
         .put(supplier.update_a_supplier)
         .delete(supplier.delete_a_supplier);
 
-    app.route('/suppliers/count')
-        .get(supplier.count_suppliers);
+    // app.route('/suppliers/count')
+        // .get(supplier.count_suppliers);
 
     // loan Routes
     app.route('/loans')
@@ -57,8 +57,8 @@ module.exports = function(app) {
         .put(loan.update_a_loan)
         .delete(loan.delete_a_loan);
 
-    app.route('/loans/active')
-        .get(loan.count_active);
+    // app.route('/loans/active')
+        // .get(loan.count_active);
 
     // employeeAccount Routes
     app.route('/employeeAccounts')
