@@ -9,9 +9,7 @@ function navigate(pageURL, users = []) {
         $("#content").load(pageURL);
         setTimeout( ()=> {
             loginSection.enableAccessiblePages();
-
             if (pageURL.includes('bookSearch'))viewBooks();
-        }, 200);
 
             if (pageURL.includes('home')) home.load()
         }, 200);
