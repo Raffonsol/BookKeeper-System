@@ -119,7 +119,7 @@ function htmlToElements(html) {
     return template.content.childNodes;
 }
 
-function viewLoan() {
+function viewLoan(rule = null, table = '#loanSearchTable') {
 
     const url = hostUrl + 'loans';
     $.ajax({
@@ -131,7 +131,12 @@ function viewLoan() {
                 return;
             }
 
-            $('#loanSearchTable').append(
+            // $.forEach(res.id, function (i, item) {
+            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
+            // })
+            // writeBooks();
+
+            $(table).append(
                 $.map(res, function (ignore, index) {
                     return '<tr><td>' + res[index].id +
                         '</td><td>' + res[index].transactionId +
