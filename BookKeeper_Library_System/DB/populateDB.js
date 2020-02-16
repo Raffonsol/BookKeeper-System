@@ -11,7 +11,7 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
     if (err) throw err;
-    console.log("Connected!");
+    console.log("Connected, populating database with initial data");
     var sql = "SET FOREIGN_KEY_CHECKS = 0;" +
 
         "DROP TABLE IF EXISTS book, supplier, bookunit, role, employee, employeeaccount, memberaccount, loan, transaction;" +
