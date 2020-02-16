@@ -40,7 +40,7 @@ con.connect(function (err) {
         "supplierId INT," +
         "FOREIGN KEY (supplierId) REFERENCES supplier(id)," +
         "acquiringDate DATE," +
-        "inStore: BOOLEAN DEFAULT true, ); " +
+        "inStore BOOLEAN DEFAULT true); " +
 
         "CREATE TABLE role ( " +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
