@@ -32,7 +32,7 @@ Loan.createLoan = function (newLoan, result) {
 
             newLoan.transactionId = res.insertId;
 
-            sql.query("INSERT INTO memberaccount set ?", newLoan, function (err, res) {
+            sql.query("INSERT INTO loan set ?", newLoan, function (err, res) {
 
                 if (err) {
                     console.log("error: ", err);
@@ -46,7 +46,7 @@ Loan.createLoan = function (newLoan, result) {
     });
 };
 Loan.getLoanById = function (loanId, result) {
-    sql.query("SELECT * from memberaccount where id = ? ", loanId, function (err, res) {
+    sql.query("SELECT * from loan where id = ? ", loanId, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -56,7 +56,19 @@ Loan.getLoanById = function (loanId, result) {
     });
 };
 Loan.getAllLoans = function (result) {
-    sql.query("Select * from memberaccount", function (err, res) {
+    sql.query("Select * from loan", function (err, res) {
+
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('loans : ', res);
+            result(null, res);
+        }
+    });
+};
+Loan.countAllActiveLoans = function (result) {
+    sql.query("Select * from loan", function (err, res) {
 
         if (err) {
             console.log("error: ", err);
@@ -68,7 +80,7 @@ Loan.getAllLoans = function (result) {
     });
 };
 Loan.updateById = function (id, loan, result) {
-    sql.query("UPDATE memberaccount SET name = ? WHERE id = ?", [loan.name, id], function (err, res) {
+    sql.query("UPDATE loan SET name = ? WHERE id = ?", [loan.name, id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

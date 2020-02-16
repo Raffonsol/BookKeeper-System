@@ -10,6 +10,16 @@ exports.list_all_suppliers = function(req, res) {
         res.send(supplier);
     });
 };
+exports.count_suppliers = function(req, res) {
+    Supplier.countAllSuppliers(function(err, supplier) {
+
+        console.log('controller');
+        if (err)
+            res.send(err);
+        console.log('res', supplier);
+        res.send(supplier);
+    });
+};
 
 exports.create_a_supplier = function(req, res) {
     var new_supplier = new Supplier(req.body);

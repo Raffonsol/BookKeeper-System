@@ -81,6 +81,7 @@ con.connect(function (err) {
         "memberAccount INT, " +
         "FOREIGN KEY (memberAccount) REFERENCES loan(id), " +
         "dueDate DATE NOT NULL," +
+        "completed BOOLEAN DEFAULT false," +
         "extensions DATE);" +
 
         "CREATE TABLE transaction (" +

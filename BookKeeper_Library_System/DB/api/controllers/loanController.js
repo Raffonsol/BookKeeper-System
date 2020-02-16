@@ -10,7 +10,16 @@ exports.list_all_loans = function(req, res) {
         res.send(loan);
     });
 };
+exports.count_active = function(req, res) {
+    Loan.countAllActiveLoans(function(err, loan) {
 
+        console.log('controller');
+        if (err)
+            res.send(err);
+        console.log('res', loan);
+        res.send(loan);
+    });
+};
 exports.create_a_loan = function(req, res) {
     var new_loan = new Loan(req.body);
     Loan.createLoan(new_loan, function(err, task) {
