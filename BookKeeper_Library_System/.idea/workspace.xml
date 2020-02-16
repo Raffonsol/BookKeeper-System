@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50b3fd1b-9fb4-4fc2-b71d-37f8d3bcc3a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/searchBookForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/api/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/api/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/populateDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/populateDB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/bookForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/components/addBookForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/components/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/bookSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/bookSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/formControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/formControl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/api/routes/libraryRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/api/routes/libraryRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/searchBookForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/searchBook.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/bookSearch.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +47,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Denve\OneDrive\Documents\Final assingment\BookKeeper-System\BookKeeper_Library_System\pages" />
+    </key>
   </component>
   <component name="RunManager" selected="Node.js.server.js">
     <configuration name="CreateBookKeeperDB.js" type="NodeJSConfigurationType" temporary="true" path-to-node="node" nameIsGenerated="true" path-to-js-file="CreateBookKeeperDB.js" working-dir="$PROJECT_DIR$/DB">
@@ -122,31 +122,31 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="279" key="FileChooserDialogImpl/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581136502060" />
-    <state width="1899" height="272" key="GridCell.Tab.0.bottom" timestamp="1581823773682">
+    <state width="1899" height="272" key="GridCell.Tab.0.bottom" timestamp="1581824460101">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.bottom/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581823773682" />
+    <state width="1899" height="272" key="GridCell.Tab.0.bottom/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581824460101" />
     <state width="1899" height="272" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870352" />
     <state width="1659" height="272" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222267" />
     <state width="1419" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/-900.0.900.1400@0.0.1440.860" timestamp="1581357605374" />
-    <state width="1899" height="272" key="GridCell.Tab.0.center" timestamp="1581823773682">
+    <state width="1899" height="272" key="GridCell.Tab.0.center" timestamp="1581824460101">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.center/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581823773682" />
+    <state width="1899" height="272" key="GridCell.Tab.0.center/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581824460101" />
     <state width="1899" height="272" key="GridCell.Tab.0.center/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870352" />
     <state width="1659" height="272" key="GridCell.Tab.0.center/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222267" />
     <state width="1419" height="222" key="GridCell.Tab.0.center/0.0.1440.860/-900.0.900.1400@0.0.1440.860" timestamp="1581357605373" />
-    <state width="1899" height="272" key="GridCell.Tab.0.left" timestamp="1581823773682">
+    <state width="1899" height="272" key="GridCell.Tab.0.left" timestamp="1581824460101">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.left/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581823773682" />
+    <state width="1899" height="272" key="GridCell.Tab.0.left/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581824460101" />
     <state width="1899" height="272" key="GridCell.Tab.0.left/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870351" />
     <state width="1659" height="272" key="GridCell.Tab.0.left/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222266" />
     <state width="1419" height="222" key="GridCell.Tab.0.left/0.0.1440.860/-900.0.900.1400@0.0.1440.860" timestamp="1581357605373" />
-    <state width="1899" height="272" key="GridCell.Tab.0.right" timestamp="1581823773682">
+    <state width="1899" height="272" key="GridCell.Tab.0.right" timestamp="1581824460101">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="272" key="GridCell.Tab.0.right/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581823773682" />
+    <state width="1899" height="272" key="GridCell.Tab.0.right/-1080.7.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1581824460101" />
     <state width="1899" height="272" key="GridCell.Tab.0.right/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1581317870352" />
     <state width="1659" height="272" key="GridCell.Tab.0.right/-1920.0.1920.1040/1920.36.1680.1010/0.0.1920.1040@1920.36.1680.1010" timestamp="1580768222267" />
     <state width="1419" height="222" key="GridCell.Tab.0.right/0.0.1440.860/-900.0.900.1400@0.0.1440.860" timestamp="1581357605374" />
