@@ -10,7 +10,8 @@ var validators = {
         author: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         genre: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         edition: {required: false, regex: null, touched: false},
-        publishDate: {required: false, regex: null, touched: false},
+        shelf: {required: false, regex: null, touched: false},
+        popularity: {required: false, regex: null, touched: false},
         units: {required: true, regex: null, touched: false},
     },
     supplier: {

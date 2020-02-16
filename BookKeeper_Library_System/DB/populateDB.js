@@ -24,6 +24,7 @@ con.connect(function (err) {
         "genre VARCHAR(100) NOT NULL, " +
         "publishDate DATE, " +
         "edition VARCHAR(100)," +
+        "popularity INT," +
         "shelf INT);" +
 
         "CREATE TABLE supplier (" +
