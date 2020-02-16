@@ -119,7 +119,7 @@ Book.countAllBooks = function (result) {
         } else {
             console.log('books count : ', res);
 
-            result(null, res);
+            result(null, {...res, count: res[0]['COUNT(*)']} );
         }
     });
 };

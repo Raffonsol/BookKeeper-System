@@ -70,7 +70,7 @@ User.countAllUsers = function (result) {
             result(null, err);
         } else {
             console.log('users : ', res);
-            result(null, res);
+            result(null, {...res, count: res[0]['COUNT(*)']});
         }
     });
 };

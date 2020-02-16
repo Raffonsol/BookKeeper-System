@@ -13,11 +13,8 @@ exports.list_all_books = function(req, res) {
 
 exports.count_books = function(req, res) {
     Book.countAllBooks(function(err, book) {
-
-        console.log('controller');
         if (err)
             res.send(err);
-        console.log('res', book);
         res.send(book);
     });
 };

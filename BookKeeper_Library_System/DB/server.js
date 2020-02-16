@@ -44,7 +44,12 @@ connection.connect(function (err) {
         //
     });
 });
-
+connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: 'bookkeeper_system'
+});
 module.exports = connection;
 
 app.listen(port);

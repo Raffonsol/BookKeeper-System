@@ -13,6 +13,7 @@ function navigate(pageURL, users = []) {
             if (pageURL.includes('bookSearch'))viewBooks();
         }, 200);
 
+            if (pageURL.includes('home')) home.load()
+        }, 200);
     }
-
 }

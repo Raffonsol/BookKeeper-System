@@ -53,7 +53,7 @@ Supplier.countAllSuppliers = function (result) {
             result(null, err);
         } else {
             console.log('suppliers : ', res);
-            result(null, res);
+            result(null, {...res, count: res[0]['COUNT(*)']});
         }
     });
 };
