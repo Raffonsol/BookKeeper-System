@@ -3,9 +3,10 @@ var sql = require('../../server.js');
 
 var Loan = function (loan) {
     this.transactionId = null;
-    this.bookId = loan.bookId;
+    this.bookId = null;
     this.memberAccount = loan.memberAccount;
     this.employeeId = loan.employeeId;
+    this.isbn = loan.isbn;
 
     var today = new Date();
     this.dueDate = today.setDate(today.getDate() + loan.loanDays);
@@ -21,25 +22,46 @@ Loan.createLoan = function (newLoan, result) {
         time: new Date().getTime()
     };
 
-    sql.query("INSERT INTO transaction set ?", transaction, function (err, res) {
-
+    sql.query("SELECT * FROM book where isbn = ?", newLoan.isbn, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
         } else {
-            console.log('transaction id:', res.insertId);
-            result(null, res);
 
-            newLoan.transactionId = res.insertId;
-
-            sql.query("INSERT INTO loan set ?", newLoan, function (err, res) {
+            newLoan.bookId = res[0].id;
+            sql.query("INSERT INTO transaction set ?", transaction, function (err, res) {
 
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
                 } else {
-                    console.log('loan id:', res.insertId);
+                    console.log('transaction id:', res.insertId);
                     result(null, res);
+
+                    newLoan.transactionId = res.insertId;
+
+                    sql.query("INSERT INTO loan set ?", newLoan, function (err, res) {
+
+                        if (err) {
+                            console.log("error: ", err);
+                            result(err, null);
+                        } else {
+                            console.log('loan id:', res.insertId);
+
+                            sql.query("UPDATE bookunit SET inStore = false WHERE id=(SELECT id from bookunit WHERE bookId = ? AND inStore = true ORDER BY ID LIMIT 1)", newLoan.bookId, function (err, res) {
+
+                                if (err) {
+                                    console.log("error: ", err);
+                                    result(err, null);
+                                } else {
+                                    console.log('loan id:', res.insertId);
+
+                                    //result(null, res);
+                                }
+                            });
+                            //result(null, res);
+                        }
+                    });
                 }
             });
         }

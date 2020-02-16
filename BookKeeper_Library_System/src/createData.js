@@ -43,3 +43,4 @@ function resetAllFields() {
         validators[dataType][i].touched = false;
     }
 }
+

@@ -4,7 +4,7 @@
  */
 function viewBooks(table = '#bookSearchTable') {
 
-    setTimeout( x => {
+    setTimeout(x => {
         const url = hostUrl + 'books';
         $.ajax({
             url: url,
@@ -41,7 +41,7 @@ function viewSuppliers() {
 
             console.log((res));
             console.log(JSON.stringify(res[0].id));
-            if(res[0].id === undefined){
+            if (res[0].id === undefined) {
                 return;
             }
 
@@ -72,9 +72,7 @@ function viewUser() {
         type: 'GET',
         success: res => {
 
-            console.log((res));
-            console.log(JSON.stringify(res[0].id));
-            if(res[0].id === undefined){
+            if (res[0].id === undefined) {
                 return;
             }
 
@@ -83,13 +81,81 @@ function viewUser() {
             // })
             // writeBooks();
 
-            $('#supplierSearchTable').append(
+
+            var docs = document.getElementById('userSearchTable');
+            for (var i = 0; i < res.length; i++) {
+                var idt = res[i].id;
+                var element = htmlToElements('<tr><td>' + res[i].id +
+                    '</td><td>' + res[i].createdBy +
+                    '</td><td>' + res[i].name +
+                    '</td><td>' + res[i].email +
+                    '</td><td>' + res[i].phoneNumber +
+                    '</td><td>' + `<button onclick="openLoanForm()" class='material-icons'>bookmark_border</button>` +
+                    '</td><td><button onclick="" class="material-icons">edit</button><button onclick="" class="material-icons">delete_outline</button>' +
+                    '</td></tr>');
+                element[0].onmouseenter = () => theHoverShit(idt);
+
+                for (var j = 0; j < element.length; j++) {
+                    docs.appendChild(element[i])
+                }
+
+            }
+
+
+        },
+        error: err => console.log(`Error ${err}`)
+    });
+}
+
+function openLoanForm() {
+
+    console.log("are we getting here?", hoveredId);
+    navigate('components/loanForm.html', ['admin', 'librarian']);
+
+}
+
+var hoveredId = null;
+function theHoverShit(id) {
+    hoveredId = id;
+}
+
+/**
+ * @param {String} HTML representing any number of sibling elements
+ * @return {NodeList}
+ */
+function htmlToElements(html) {
+    var template = document.createElement('template');
+    template.innerHTML = html;
+    return template.content.childNodes;
+}
+
+function viewLoan() {
+
+    const url = hostUrl + 'loans';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: res => {
+
+            console.log((res));
+            console.log(JSON.stringify(res[0].id));
+            if (res[0].id === undefined) {
+                return;
+            }
+
+            // $.forEach(res.id, function (i, item) {
+            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
+            // })
+            // writeBooks();
+
+            $('#loanSearchTable').append(
                 $.map(res, function (ignore, index) {
                     return '<tr><td>' + res[index].id +
-                        '</td><td>' + res[index].createdBy +
-                        '</td><td>' + res[index].name +
-                        '</td><td>' + res[index].email +
-                        '</td><td>' + res[index].phoneNumber +
+                        '</td><td>' + res[index].transactionId +
+                        '</td><td>' + res[index].bookId +
+                        '</td><td>' + res[index].memberAccount +
+                        '</td><td>' + res[index].dueDate +
+                        '</td><td>' + res[index].extensions +
                         '</td></tr>';
                 }).join());
 

@@ -28,6 +28,9 @@ var validators = {
         name: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         email: {required: false, regex: '^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$', touched: false},
         phone: {required: false, regex: '^\\(?([0-9]{3})\\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$', touched: false},
+    },
+    loan: {
+        
     }
 };
 

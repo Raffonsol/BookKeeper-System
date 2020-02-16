@@ -17,6 +17,7 @@ function navigate(pageURL, users = []) {
             if (pageURL.includes('bookSearch')) viewBooks();
             if (pageURL.includes('supplierSearch')) viewSuppliers();
             if (pageURL.includes('userSearch')) viewUser();
+            if (pageURL.includes('loanSearch')) viewLoan();
 
         }, 200);
     }
