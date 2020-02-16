@@ -6,6 +6,7 @@ var express = require('express'),
 
 app.use(cors());
 
+
 const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
@@ -32,19 +33,11 @@ con.connect(function (err) {
 // Prompt user to input data in console.
 // When user input data and click enter key.
         readline.question(`Would you like to initialize the database? (y/n)`, (name) => {
+            console.log(name);
             // User input exit.
             if (name === 'y') {
-                // Program exit.
-                exec('node populateDB', (err, stdout, stderr) => {
-                    if (err) {
-                        //some err occurred
-                        console.error(err)
-                    } else {
-                        // the *entire* stdout and stderr (buffered)
-                        console.log(`stdout: ${stdout}`);
-                        console.log(`stderr: ${stderr}`);
-                    }
-                });
+                // populate DB
+                var populateDB = require('./populateDB.js');
             }
         });
     });
