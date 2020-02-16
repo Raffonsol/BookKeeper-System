@@ -6,7 +6,7 @@ var validators = {
     book: {
         supplier: {required: false, regex: null, touched: false},
         title: {required: true, regex: null, touched: false},
-        isbn: {required: false, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
+        isbn: {required: true, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
         author: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         genre: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         edition: {required: false, regex: null, touched: false},
@@ -96,6 +96,31 @@ function editBook() {
     // find the id of the book being edited
 
     // update
+}
+
+/**
+ * search for books
+ * @param formData
+ */
+
+function searchData() {
+
+    var formData = window[`${dataType}Data`]();
+    if (validateAllFields(formData)) {
+        return;
+    }
+
+    function viewBooks(formData) {
+
+        const url = hostUrl + 'books';
+        $.ajax({
+            url: url,
+            data: formData,
+            type: 'GET',
+            success: res => console.log(res),
+            error: err => console.log(`Error ${err}`)
+        })
+    }
 }
 
 /**
