@@ -78,7 +78,7 @@ Loan.getLoanById = function (loanId, result) {
     });
 };
 Loan.getAllLoans = function (result) {
-    sql.query("Select * from loan", function (err, res) {
+    sql.query("SELECT * FROM loan LEFT join book ON loan.bookId = book.id", function (err, res) {
 
         if (err) {
             console.log("error: ", err);

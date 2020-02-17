@@ -12,7 +12,7 @@ function viewBooks(rule = null, table = '#bookSearchTable') {
             type: 'GET',
             success: res => {
 
-                res =
+                if(rule) res = runRule(rule, res);
 
                     $(table).append(
                         $.map(res, function (ignore, index) {
@@ -131,18 +131,12 @@ function viewLoan(rule = null, table = '#loanSearchTable') {
             if (res.length < 1) {
                 return;
             }
-
-            // $.forEach(res.id, function (i, item) {
-            //     trHTML += '<tr><td>' + res.id[i] + '</td><td>'+ '</td>'
-            // })
-            // writeBooks();
+            if(rule) res = runRule(rule, res);
 
             $(table).append(
                 $.map(res, function (ignore, index) {
                     return '<tr><td>' + res[index].id +
-                        '</td><td>' + res[index].transactionId +
-                        '</td><td>' + res[index].bookId +
-                        '</td><td>' + res[index].memberAccount +
+                        '</td><td>' + res[index].isbn +
                         '</td><td>' + res[index].dueDate +
                         '</td><td>' + res[index].extensions +
                         '</td></tr>';
@@ -207,9 +201,22 @@ function populateDropDown() {
 }
 
 function runRule(rule, list) {
-    if (rule === 'overDue') {
-        return list.map(book => {
-            // return book.
+    sessionStorage.setItem('recentBook', 1); //TODO : move to book visit
+    if (rule === 'overdue') {
+        return list.filter(loan => {
+            return new Date(loan.dueDate) > new Date();
         })
     }
+    if (rule === 'recentBook') {
+        return list.filter(book => {
+            console.log(book.id.toString(), sessionStorage.getItem('recentBook'));
+            return book.id.toString() === sessionStorage.getItem('recentBook');
+        })
+    }
+
+    return list.filter(item => {
+        return item[rule.substr(0, rule.indexOf(':'))].toString() === rule.substr( rule.indexOf(':')+1);
+    });
+
+    return rule;
 }
