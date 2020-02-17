@@ -41,7 +41,7 @@ exports.read_a_loan = function(req, res) {
 
 
 exports.update_a_loan = function(req, res) {
-    Loan.updateById(req.params.loanId, new Loan(req.body), function(err, task) {
+    Loan.updateById(req.params.loanId, function(err, task) {
         if (err)
             res.send(err);
         res.json(task);

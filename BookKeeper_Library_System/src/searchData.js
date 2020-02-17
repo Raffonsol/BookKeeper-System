@@ -3,7 +3,7 @@
  * @param rule
  * @param table
  */
-function viewBooks(rule = null, table = '#bookSearchTable') {
+function viewBooks(rule = null, table = 'bookSearchTable') {
 
     setTimeout(x => {
         const url = hostUrl + 'books';
@@ -17,15 +17,24 @@ function viewBooks(rule = null, table = '#bookSearchTable') {
                 }
                 if(rule) res = runRule(rule, res);
 
-                    $(table).append(
-                        $.map(res, function (ignore, index) {
-                            return '<tr><td>' + res[index].isbn +
-                                '</td><td>' + res[index].title +
-                                '</td><td>' + res[index].author +
-                                '</td><td>' + res[index].genre +
-                                '</td><td>' + res[index].publishDate +
-                                '</td></tr>';
-                        }).join());
+                var docs = document.getElementById(table);
+                for (var i = 0; i < res.length; i++) {
+                    var element = htmlToElements('<tr><td>' + res[i].isbn +
+                        '</td><td>' + res[i].title +
+                        '</td><td>' + res[i].author +
+                        '</td><td>' + res[i].genre +
+                        '</td><td>' + res[i].publishDate +
+                        '</td><td><button onclick="openEditForm(\'book\', [\'admin\', \'librarian\'])" class="material-icons">edit</button> ' +
+                        '<button onclick="" class="material-icons">delete_outline</button>' +
+                        '</td></tr>');
+                    element[0].onmouseenter = () => detectHoveredItem(res[i]);
+
+                    for (var j = 0; j < element.length; j++) {
+                        if (docs) docs.appendChild(element[j])
+                    }
+
+                }
+
 
             },
             error: err => console.log(`Error ${err}`)
@@ -76,20 +85,18 @@ function viewUser(rule = null, table = 'userSearchTable') {
 
             var docs = document.getElementById(table);
             for (var i = 0; i < res.length; i++) {
-                var idt = res[i].id;
-                var element = htmlToElements('<tr><td>' + res[i].id +
-                    '</td><td>' + res[i].createdBy +
-                    '</td><td>' + res[i].name +
+                var element = htmlToElements(
+                    '<tr><td>' + res[i].name +
                     '</td><td>' + res[i].email +
                     '</td><td>' + res[i].phoneNumber +
                     '</td><td>' + `<button onclick="openLoanForm()" class='material-icons'>bookmark_border</button>` +
-                    '</td><td><button onclick="" class="material-icons">edit</button> ' +
+                    '</td><td><button onclick="openEditForm(\'user\', [\'admin\', \'support\'])" class="material-icons">edit</button> ' +
                     '<button onclick="" class="material-icons">delete_outline</button>' +
                     '</td></tr>');
-                element[0].onmouseenter = () => theHoverShit(idt);
+                element[0].onmouseenter = () => detectHoveredItem(res[i]);
 
                 for (var j = 0; j < element.length; j++) {
-                    docs.appendChild(element[i])
+                    if (docs) docs.appendChild(element[j]);
                 }
 
             }
@@ -100,30 +107,7 @@ function viewUser(rule = null, table = 'userSearchTable') {
     });
 }
 
-function openLoanForm() {
-
-    dataType='loan';
-    navigate('components/loanForm.html#'+ hoveredId, ['admin', 'librarian']);
-
-}
-
-var hoveredId = null;
-
-function theHoverShit(id) {
-    hoveredId = id;
-}
-
-/**
- * @param {String} HTML representing any number of sibling elements
- * @return {NodeList}
- */
-function htmlToElements(html) {
-    var template = document.createElement('template');
-    template.innerHTML = html;
-    return template.content.childNodes;
-}
-
-function viewLoan(rule = null, table = '#loanSearchTable') {
+function viewLoan(rule = null, table = 'loanSearchTable') {
 
     const url = hostUrl + 'loans';
     $.ajax({
@@ -136,19 +120,64 @@ function viewLoan(rule = null, table = '#loanSearchTable') {
             }
             if(rule) res = runRule(rule, res);
 
-            $(table).append(
-                $.map(res, function (ignore, index) {
-                    return '<tr><td>' + res[index].id +
-                        '</td><td>' + res[index].isbn +
-                        '</td><td>' + res[index].dueDate +
-                        '</td><td>' + res[index].extensions +
-                        '</td></tr>';
-                }).join());
 
+            var docs = document.getElementById(table);
+            for (var i = 0; i < res.length; i++) {
+                var element = htmlToElements(
+                    '<tr><td>' + res[i].isbn +
+                    '</td><td>' + res[i].dueDate +
+                    '</td><td>' + res[i].extensions +
+                    '</td><td>' + `<button onclick="markLoanAsComplete()" class='material-icons'>bookmark_border</button>` +
+                    '</td></tr>');
+                element[0].onmouseenter = () => detectHoveredItem(res[i]);
+
+                for (var j = 0; j < element.length; j++) {
+                    if (docs) docs.appendChild(element[j]);
+                }
+
+            }
         },
         error: err => console.log(`Error ${err}`)
     })
 }
+
+function openLoanForm() {
+
+    dataType='loan';
+    navigate('components/loanForm.html', ['admin', 'librarian']);
+
+}
+
+function openEditForm(type, permissions) {
+
+    changeType = 'edit';
+    dataType = type;
+    navigate('pages/editData.html', permissions);
+
+}
+
+var hoveredId = null;
+var hoveredItem = null;
+
+function detectHoveredItem(res) {
+    hoveredId = res.id;
+    hoveredItem = res;
+}
+
+function markLoanAsComplete() {
+
+}
+
+/**
+ * @param {String} HTML representing any number of sibling elements
+ * @return {NodeList}
+ */
+function htmlToElements(html) {
+    var template = document.createElement('template');
+    template.innerHTML = html;
+    return template.content.childNodes;
+}
+
 
 function editBookForm() {
 

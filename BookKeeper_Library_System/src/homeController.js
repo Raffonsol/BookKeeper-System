@@ -57,9 +57,9 @@ var home = {
             $("#overdueResults").load('components/previewResults.html');
             $("#historyResults").load('components/previewResults.html');
             $("#trendingResults").load('components/previewResults.html');
-            viewLoan('overdue', '#overdueList');
-            viewBooks('recentBook', '#historyList');
-            viewBooks('popularity:3', '#trendingList');
+            viewLoan('overdue', 'overdueList');
+            viewBooks('recentBook', 'historyList');
+            viewBooks('popularity:3', 'trendingList');
         }, 200);
 
     }

@@ -51,6 +51,18 @@ function bookData() {
     return form;
 }
 
+function setBookData(form) {
+    document.getElementById('supplier').value = form.supplier;
+    document.getElementById('title').value = form.title;
+    document.getElementById('isbn').value = form.isbn;
+    document.getElementById('author').value = form.author;
+    document.getElementById('genre').value = form.genre;
+    document.getElementById('edition').value = form.edition;
+    document.getElementById('publishDate').value = form.publishDate;
+    document.getElementById('shelf').value = form.shelf;
+    document.getElementById('popularity').value = form.popularity;
+}
+
 function supplierData() {
     var form = {};
     form.supplierName = (document.getElementById('supplierName').value);
@@ -66,6 +78,12 @@ function userData() {
     form.phone = (document.getElementById('phone').value);
     form.createdBy = user.user;
     return form;
+}
+
+function setUserData(form) {
+    document.getElementById('name').value = form.name;
+    document.getElementById('email').value = form.email;
+    document.getElementById('phone').value = form.phone;
 }
 
 function loanData() {
@@ -155,7 +173,7 @@ function validate(field, value, submitting = false) {
 
     // get the field being evaluated
     var validatorObject = validators[dataType][field];
-console.log('va', validatorObject, JSON.stringify(dataType))
+
     // check that this field was even touched in the first place
     if (!validatorObject || !validatorObject.touched && !submitting) {
         return false;

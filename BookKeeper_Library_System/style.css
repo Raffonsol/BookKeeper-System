@@ -279,14 +279,14 @@ table {
     width: 100%;
     overflow: scroll;
 }
-.searchTables th {
+th {
     text-align: left; /* Left-align text */
     padding: 12px; /* Add padding */
 }
-.searchTables tr {
+tr {
     /* Add a bottom border to all table rows */
     border-bottom: 1px solid #ddd;
-    justify-content: space-between;
+
     display: flex;
     align-content: center;
     flex-direction: row;

@@ -124,7 +124,25 @@ Book.countAllBooks = function (result) {
     });
 };
 Book.updateById = function (id, book, result) {
-    sql.query("UPDATE books SET title = ? WHERE id = ?", [book.title, id], function (err, res) {
+    sql.query("UPDATE books SET " +
+        "title = ?," +
+        "isbn = ?," +
+        "author = ?," +
+        "genre = ?," +
+        "edition = ?," +
+        "publishDate = ?," +
+        "shelf = ?," +
+        "popularity = ?," +
+        " WHERE id = ?", [
+            book.title,
+            book.isbn,
+            book.author,
+            book.genre,
+            book.edition,
+            book.publishDate,
+            book.shelf,
+            book.popularity,
+        id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

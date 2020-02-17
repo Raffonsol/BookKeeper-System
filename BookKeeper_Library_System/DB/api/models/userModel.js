@@ -75,7 +75,15 @@ User.countAllUsers = function (result) {
     });
 };
 User.updateById = function (id, user, result) {
-    sql.query("UPDATE memberaccount SET name = ? WHERE id = ?", [user.name, id], function (err, res) {
+    sql.query("UPDATE memberaccount SET" +
+        " name = ?" +
+        " email = ?" +
+        " phone = ?" +
+        " WHERE id = ?", [
+            user.name,
+            user.email,
+            user.phone,
+        id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

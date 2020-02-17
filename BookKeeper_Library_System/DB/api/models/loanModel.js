@@ -78,7 +78,7 @@ Loan.getLoanById = function (loanId, result) {
     });
 };
 Loan.getAllLoans = function (result) {
-    sql.query("SELECT * FROM loan LEFT join book ON loan.bookId = book.id", function (err, res) {
+    sql.query("SELECT * FROM loan LEFT join book ON loan.bookId = book.id WHERE completed = false", function (err, res) {
 
         if (err) {
             console.log("error: ", err);
@@ -101,8 +101,8 @@ Loan.countAllActiveLoans = function (result) {
         }
     });
 };
-Loan.updateById = function (id, loan, result) {
-    sql.query("UPDATE loan SET name = ? WHERE id = ?", [loan.name, id], function (err, res) {
+Loan.updateById = function (id, result) {
+    sql.query("UPDATE loan SET completed = true WHERE id = ?", id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
