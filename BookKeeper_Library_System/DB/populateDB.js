@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "",
     database: "BookKeeper_System",
     multipleStatements: true
 
@@ -11,20 +11,21 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
     if (err) throw err;
-    console.log("Connected!");
+    console.log("Connected, populating database with initial data");
     var sql = "SET FOREIGN_KEY_CHECKS = 0;" +
 
         "DROP TABLE IF EXISTS book, supplier, bookunit, role, employee, employeeaccount, memberaccount, loan, transaction;" +
 
         "CREATE TABLE book (" +
-        "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+        "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
+        "isbn VARCHAR(11) NOT NULL, " +
         "title VARCHAR(150) NOT NULL," +
         "author VARCHAR(100) NOT NULL, " +
         "genre VARCHAR(100) NOT NULL, " +
         "publishDate DATE, " +
         "edition VARCHAR(100)," +
-        "shelf INT," +
-        "isbn VARCHAR(11));" +
+        "popularity INT," +
+        "shelf VARCHAR(100));" +
 
         "CREATE TABLE supplier (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
@@ -36,9 +37,10 @@ con.connect(function (err) {
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
         "bookId INT," +
         "FOREIGN KEY (bookId) REFERENCES book(id)," +
-        "supplierId INT NOT NULL," +
+        "supplierId INT," +
         "FOREIGN KEY (supplierId) REFERENCES supplier(id)," +
-        "acquiringDate DATE); " +
+        "acquiringDate DATE," +
+        "inStore BOOLEAN DEFAULT true); " +
 
         "CREATE TABLE role ( " +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
@@ -73,12 +75,13 @@ con.connect(function (err) {
         "CREATE TABLE loan (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
         "transactionId INT," +
-        "FOREIGN KEY (transactionId) REFERENCES memberaccount(id)," +
+        "FOREIGN KEY (transactionId) REFERENCES transaction(id)," +
         "bookId INT," +
         "FOREIGN KEY (bookId) REFERENCES bookunit(id)," +
         "memberAccount INT, " +
         "FOREIGN KEY (memberAccount) REFERENCES loan(id), " +
         "dueDate DATE NOT NULL," +
+        "completed BOOLEAN DEFAULT false," +
         "extensions DATE);" +
 
         "CREATE TABLE transaction (" +
@@ -113,5 +116,7 @@ con.connect(function (err) {
         if (err) throw err;
         console.log("Table created");
         console.log(sql);
+
+        var index = require
     });
 });

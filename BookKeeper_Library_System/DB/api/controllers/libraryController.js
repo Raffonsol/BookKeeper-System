@@ -11,11 +11,19 @@ exports.list_all_books = function(req, res) {
     });
 };
 
+exports.count_books = function(req, res) {
+    Book.countAllBooks(function(err, book) {
+        if (err)
+            res.send(err);
+        res.send(book);
+    });
+};
+
 exports.create_a_book = function(req, res) {
     var new_book = new Book(req.body);
 
     //handles null error
-    if(!new_book.author || !new_book.title){
+    if(!new_book.theBook.author || !new_book.theBook.title){
 
         res.status(400).send({ error:true, message: 'Please provide author/title' });
 

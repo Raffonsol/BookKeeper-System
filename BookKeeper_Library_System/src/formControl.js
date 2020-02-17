@@ -1,14 +1,18 @@
 
+var hostUrl = 'http://localhost:3000/';
+
 // validators
 var validators = {
     book: {
         supplier: {required: false, regex: null, touched: false},
         title: {required: true, regex: null, touched: false},
-        isbn: {required: false, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
+        isbn: {required: true, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
         author: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         genre: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         edition: {required: false, regex: null, touched: false},
         publishDate: {required: false, regex: null, touched: false},
+        shelf: {required: false, regex: null, touched: false},
+        popularity: {required: false, regex: null, touched: false},
         units: {required: true, regex: null, touched: false},
     },
     supplier: {
@@ -21,10 +25,14 @@ var validators = {
         },
     },
     user: {
-        firstName: {required: true, regex: '^[A-Za-z]+$', touched: false},
-        lastName: {required: true, regex: '^[A-Za-z]+$', touched: false},
+        name: {required: true, regex: '^[a-zA-Z\\s]*$', touched: false},
         email: {required: false, regex: '^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$', touched: false},
         phone: {required: false, regex: '^\\(?([0-9]{3})\\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$', touched: false},
+    },
+    loan: {
+        loan_isbn: {required: true, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
+        loanDuration: {required: true, regex: null, touched: false},
+        extensions: {required: true, regex: null, touched: false},
     }
 };
 
@@ -37,8 +45,22 @@ function bookData() {
     form.genre = (document.getElementById('genre').value);
     form.edition = (document.getElementById('edition').value);
     form.publishDate = (document.getElementById('publishDate').value);
+    form.shelf = (document.getElementById('shelf').value);
+    form.popularity = (document.getElementById('popularity').popularity);
     form.units = (document.getElementById('units').value);
     return form;
+}
+
+function setBookData(form) {
+    document.getElementById('title').value = form.title;
+    document.getElementById('isbn').value = form.isbn;
+    document.getElementById('author').value = form.author;
+    document.getElementById('genre').value = form.genre;
+    document.getElementById('edition').value = form.edition;
+    document.getElementById('publishDate').value = form.publishDate;
+    document.getElementById('shelf').value = form.shelf;
+    document.getElementById('popularity').value = form.popularity;
+    document.getElementById('units').value = 1;
 }
 
 function supplierData() {
@@ -51,10 +73,26 @@ function supplierData() {
 
 function userData() {
     var form = {};
-    form.firstName = (document.getElementById('firstName').value);
-    form.lastName = (document.getElementById('lastName').value);
+    form.name = (document.getElementById('name').value);
     form.email = (document.getElementById('email').value);
     form.phone = (document.getElementById('phone').value);
+    form.createdBy = user.user;
+    return form;
+}
+
+function setUserData(form) {
+    document.getElementById('name').value = form.name ? form.name : '';
+    document.getElementById('email').value = form.email ? form.email : '';
+    document.getElementById('phone').value = form.phoneNumber ? form.phoneNumber : '';
+}
+
+function loanData() {
+    var form = {};
+    form.loan_isbn = (document.getElementById('loan_isbn').value);
+    form.loanDuration = (document.getElementById('loanDuration').value);
+    form.extensions = (document.getElementById('extensions').value);
+    form.createdBy = user.user;
+
     return form;
 }
 
@@ -67,43 +105,35 @@ function submitData() {
         return;
     }
 
-    console.log('submitted', formData);
-    //TODO: query database to see if this book title already exists
-    // var bookid = result
-    // create book type
-    if (dataType === "book") {
-        submitBooks(formData);
-    }
-}
-
-function submitBooks(formData) {
-
-    const url='http://localhost:3000/books';
+    if (!changeType) changeType = 'create';
+    const url= hostUrl + dataType + 's';
     $.ajax({
-        url: url,
+        url: changeType === 'create' ? url : url + '/' + dataId,
         data: formData,
-        type: 'POST',
+        type: changeType === 'create' ? 'POST' : 'PUT',
         success: res => console.log(res),
         error: err => console.log(`Error ${err}`)
     })
-    // const Http = new XMLHttpRequest();
-    // Http.open("GET", url);
-    // Http.send();
-    //
-    // Http.onreadystatechange = (e) => {
-    //     console.log(Http.responseText)
-    // };
-    // var sql = `INSERT INTO book ( title, author, genre, publisherDate, edition, shelf, isbn) VALUES ()`;
-
 }
 
-function editBook() {
-    var form = bookData();
+function getData() {
+    var formData = window[`${dataType}Data`]();
+    if (validateAllFields(formData)) {
+        return;
+    }
 
-    // find the id of the book being edited
-
-    // update
+    console.log('submitted', formData);
+    const url= hostUrl + dataType + 's';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: res => console.log(res),
+        error: err => console.log(`Error ${err}`)
+    })
 }
+
+
+
 
 /**
  * Runs on update of any field
@@ -128,6 +158,7 @@ function updateForm() {
  * @param element element just focused out of
  */
 function markAsTouched(element) {
+
     validators[dataType][element.id].touched = true;
 }
 
@@ -139,11 +170,12 @@ function markAsTouched(element) {
  * @param submitting if true, the user is trying to submit
  */
 function validate(field, value, submitting = false) {
+
     // get the field being evaluated
     var validatorObject = validators[dataType][field];
 
     // check that this field was even touched in the first place
-    if (!validatorObject.touched && !submitting) {
+    if (!validatorObject || !validatorObject.touched && !submitting) {
         return false;
     }
 
@@ -156,6 +188,7 @@ function validate(field, value, submitting = false) {
         // check if its required
         if (validatorObject.required) {
             // not set so failed
+
             setErrorMessage(field, 'Required', true, 'red');
             return true;
         }
@@ -165,10 +198,12 @@ function validate(field, value, submitting = false) {
     // test regex
     if (!validatorObject.regex || regex.test(value)) {
         // success
+
         setErrorMessage(field, '✔', false, 'green');
         return false;
     } else {
         // failed
+        
         setErrorMessage(field, 'Not valid', true, 'red');
         return true;
     }
@@ -180,6 +215,7 @@ function validate(field, value, submitting = false) {
  * @returns {boolean}
  */
 function validateAllFields(data) {
+    console.log(JSON.stringify(dataType), JSON.stringify(data));
     var success = true;
     Object.keys(data).forEach(key => {
         if (validate(key, data[key], true)) success = false;
@@ -195,8 +231,18 @@ function findLablelForControl(idVal) {
     }
 }
 
+/**
+ * set error message on label for element matching
+ * passed in id, if label does not exist, sets
+ * message on the element matching given id
+ * @param fieldID
+ * @param message
+ * @param failed
+ * @param color
+ */
 function setErrorMessage(fieldID, message, failed, color = null) {
     var label = findLablelForControl(fieldID);
+    if (!label) {console.log(fieldID); label = document.getElementById(fieldID);}
     label.innerHTML = message;
     if (color) label.style.color = color;
     document.getElementById(fieldID).setAttribute('aria-invalid', failed);

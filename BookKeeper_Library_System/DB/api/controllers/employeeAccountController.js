@@ -30,6 +30,14 @@ exports.read_a_employeeAccount = function(req, res) {
     });
 };
 
+exports.read_employeeAccount_from_username = function(req, res) {
+    EmployeeAccount.getEmployeeAccountByUsername(req.params.employeeUsername, function(err, task) {
+        if (err)
+            res.send(err);
+        res.json(task);
+    });
+};
+
 
 exports.update_a_employeeAccount = function(req, res) {
     EmployeeAccount.updateById(req.params.employeeAccountId, new EmployeeAccount(req.body), function(err, task) {

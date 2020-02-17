@@ -1,8 +1,8 @@
 'supplier strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var Supplier = function (supplier) {
-    this.name = supplier.name;
+    this.name = supplier.supplierName;
     this.about = supplier.about;
     this.website = supplier.website;
 };
@@ -42,6 +42,18 @@ Supplier.getAllSuppliers = function (result) {
         } else {
             console.log('suppliers : ', res);
             result(null, res);
+        }
+    });
+};
+Supplier.countAllSuppliers = function (result) {
+    sql.query("SELECT COUNT(*) from supplier", function (err, res) {
+
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            console.log('suppliers : ', res);
+            result(null, {...res, count: res[0]['COUNT(*)']});
         }
     });
 };

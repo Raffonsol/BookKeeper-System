@@ -1,5 +1,5 @@
 'employeeAccount strict';
-var sql = require('../db.js');
+var sql = require('../../server.js');
 
 var EmployeeAccount = function (employeeAccount) {
     this.name = employeeAccount.name.replace(
@@ -43,7 +43,7 @@ EmployeeAccount.createEmployeeAccount = function (newEmployeeAccount, result) {
                 // there should only ever be one result
                 employeeID = res[0].id;
             } else {
-                sql.query("INSERT INTO employe set ?", newEmployeeAccount, function (err, res) {
+                sql.query("INSERT INTO employee set ?", newEmployeeAccount, function (err, res) {
 
                     if(err) {
                         console.log("error: ", err);
@@ -95,6 +95,18 @@ EmployeeAccount.createEmployeeAccount = function (newEmployeeAccount, result) {
 };
 EmployeeAccount.getEmployeeAccountById = function (employeeAccountId, result) {
     sql.query("SELECT * from employeeaccount where id = ? ", employeeAccountId, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
+};
+EmployeeAccount.getEmployeeAccountByUsername = function (employeeUsername, result) {
+    sql.query("SELECT e.username, e.password, r.roleName from employeeaccount e " +
+        " INNER JOIN role r ON e.roleId = r.id where username = ?",
+        employeeUsername, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);

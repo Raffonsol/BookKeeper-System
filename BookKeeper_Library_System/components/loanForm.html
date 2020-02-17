@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<br>
+
+<form action="" name="loanForm" onfocusout="updateForm()" oninput="updateForm()">
+<span>ISBN</span>
+<input class="formField" id="loan_isbn" onfocusout="markAsTouched(this)"  type="text"><br>
+<label class="error-message" for="loan_isbn"></label><br>
+
+
+<br>
+<span>Loan Duration</span>
+<input class="formField" id="loanDuration" onfocusout="markAsTouched(this)" type="number"><br>
+<label class="error-message" for="loanDuration"></label><br>
+
+<br>
+<span>Extensions</span>
+<input class="formField" id="extensions" onfocusout="markAsTouched(this)" type="number"><br>
+<label class="error-message" for="extensions"></label><br>
+
+<input class="submitBtn" type="button" value="Submit" onclick="submitData()">
+</form>
+</html>

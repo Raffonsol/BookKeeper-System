@@ -1,5 +1,7 @@
 
 var dataType = null;
+var changeType = 'create';
+var dataId = null;
 
 /**
  * Enables dropdown selections based on user permissions
@@ -43,3 +45,4 @@ function resetAllFields() {
         validators[dataType][i].touched = false;
     }
 }
+

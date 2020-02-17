@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    $(function () {
+        $("#editForm").load("components/" + dataType + "Form.html");
+
+        setTimeout( () => {
+            if (dataType === 'book') setBookData(hoveredItem);
+            if (dataType === 'user') setUserData(hoveredItem);
+        }, 100);
+
+    });
+</script>
+<body>
+<form action="" name="editForm" onfocusout="updateForm()" oninput="updateForm()">
+    <div id="editForm"></div>
+</form>
+</body>
+</html>

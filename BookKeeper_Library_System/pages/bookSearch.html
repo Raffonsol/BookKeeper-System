@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body>
+<input type="text" id="searchBooks" class="searchBar" onkeyup="filterData()" placeholder="Filter Books..">
 
-afaf
+<br/>
+<br/>
 
-</body>
+<table id="bookTable" class="searchTables">
+    <thead>
+        <tr class="searchTopRow">
+            <th class="searchHeaders">ISBN</th>
+            <th class="searchHeaders">title</th>
+            <th class="searchHeaders">Author</th>
+            <th class="searchHeaders">Genre</th>
+            <th class="searchHeaders">Publish Date</th>
+            <th class="searchHeaders">Edit & Delete</th>
+        </tr>
+    </thead>
+    <tbody id="bookSearchTable">
+    </tbody>
+
+</table>
+
 </html>

@@ -10,6 +10,16 @@ exports.list_all_users = function(req, res) {
         res.send(user);
     });
 };
+exports.count_users = function(req, res) {
+    User.countAllUsers(function(err, user) {
+
+        console.log('controller');
+        if (err)
+            res.send(err);
+        console.log('res', user);
+        res.send(user);
+    });
+};
 
 exports.create_a_user = function(req, res) {
     var new_user = new User(req.body);

@@ -2,6 +2,53 @@
 <html lang="en">
 
 <body>
-home
+<div class="homeContainer">
+    <div id="statistics" class="homeSection admin support librarian">
+        <div class="homeSectionTitle"><h2><b>Statistics</b></h2><i class="material-icons md-48">cloud</i></div>
+        <div><b>Library Users: </b><span id="countUser">0</span></div>
+        <div><b>Book Copies in Shelves: </b><span id="countBook">0</span></div>
+        <div><b>Library Suppliers: </b><span id="countSupplier">0</span></div>
+        <div><b>Active Loans: </b><span id="countLoan">0</span></div>
+    </div>
+    <div id="overdues" class="homeSection admin librarian">
+        <div class="homeSectionTitle"><h2><b>Overdue Loans</b></h2><i class="material-icons md-48">alarm</i></div>
+        <div class="previewResultsContainer">
+
+            <table>
+
+                <tbody id="overdueList" class="smallFont searchTables">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="history" class="homeSection">
+        <div class="homeSectionTitle"><h2><b>Recently Viewed</b></h2><i class="material-icons md-48">av_timer</i></div>
+        <div class="previewResultsContainer">
+
+            <table>
+
+                <tbody id="historyList" class="smallFont searchTables">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="trending" class="homeSection">
+        <div class="homeSectionTitle"><h2><b>Trending</b></h2><i class="material-icons md-48">new_releases</i></div>
+        <div class="previewResultsContainer">
+
+            <table>
+
+                <tbody id="trendingList" class="smallFont searchTables">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
