@@ -18,7 +18,7 @@ function viewBooks(rule = null, table = 'bookSearchTable') {
                 if (res.length < 1) {
                     return;
                 }
-                if(rule) res = runRule(rule, res);
+                if (rule) res = runRule(rule, res);
 
                 var docs = document.getElementById(table);
                 for (var i = 0; i < res.length; i++) {
@@ -29,7 +29,7 @@ function viewBooks(rule = null, table = 'bookSearchTable') {
                         '</td><td>' + res[i].genre +
                         '</td><td>' + res[i].publishDate +
                         '</td><td><button onclick="openEditForm(\'book\', [\'admin\', \'librarian\'])" class="material-icons">edit</button> ' +
-                        '<button onclick="" class="material-icons">delete_outline</button>' +
+                        '<button onclick="deleteItem(\'books\')" class="material-icons">delete_outline</button>' +
                         '</td></tr>');
                     element[0].onmouseenter = () => detectHoveredItem(result);
 
@@ -58,7 +58,7 @@ function viewSuppliers(rule = null, table = '#supplierSearchTable') {
             if (res.length < 1) {
                 return;
             }
-            if(rule) res = runRule(rule, res);
+            if (rule) res = runRule(rule, res);
 
             $(table).append(
                 $.map(res, function (ignore, index) {
@@ -85,7 +85,7 @@ function viewUser(rule = null, table = 'userSearchTable') {
             if (res.length < 1) {
                 return;
             }
-            if(rule) res = runRule(rule, res);
+            if (rule) res = runRule(rule, res);
 
             var docs = document.getElementById(table);
             for (var i = 0; i < res.length; i++) {
@@ -96,7 +96,7 @@ function viewUser(rule = null, table = 'userSearchTable') {
                     '</td><td>' + res[i].phoneNumber +
                     '</td><td>' + `<button onclick="openLoanForm()" class='material-icons'>bookmark_border</button>` +
                     '</td><td><button onclick="openEditForm(\'user\', [\'admin\', \'support\'])" class="material-icons">edit</button> ' +
-                    '<button onclick="" class="material-icons">delete_outline</button>' +
+                    '<button onclick="deleteItem(\'users\')" class="material-icons">delete_outline</button>' +
                     '</td></tr>');
                 element[0].onmouseenter = () => detectHoveredItem(result);
 
@@ -123,7 +123,7 @@ function viewLoan(rule = null, table = 'loanSearchTable') {
             if (res.length < 1) {
                 return;
             }
-            if(rule) res = runRule(rule, res);
+            if (rule) res = runRule(rule, res);
 
 
             var docs = document.getElementById(table);
@@ -133,7 +133,7 @@ function viewLoan(rule = null, table = 'loanSearchTable') {
                     '<tr><td>' + res[i].isbn +
                     '</td><td>' + res[i].dueDate +
                     '</td><td>' + res[i].extensions +
-                    '</td><td>' + `<button onclick="markLoanAsComplete()" class='material-icons'>bookmark_border</button>` +
+                    '</td><td>' + `<button onclick="deleteItem('loans')" class='material-icons'>delete_outline</button>` +
                     '</td></tr>');
                 element[0].onmouseenter = () => detectHoveredItem(result);
 
@@ -149,7 +149,8 @@ function viewLoan(rule = null, table = 'loanSearchTable') {
 
 function openLoanForm() {
 
-    dataType='loan';
+    changeType = 'create';
+    dataType = 'loan';
     navigate('components/loanForm.html', ['admin', 'librarian']);
 
 }
@@ -164,12 +165,19 @@ function openEditForm(type, permissions) {
 }
 
 function detectHoveredItem(res) {
+    console.log(res);
     hoveredId = res.id;
     hoveredItem = res;
 }
 
-function markLoanAsComplete() {
-
+function deleteItem(data) {
+    $.ajax({
+        url: hostUrl + data + '/' + hoveredId,
+        type: 'DELETE',
+        success: res => console.log(res),
+        error: err => console.log(`Error ${err}`)
+    });
+    window.location.reload();
 }
 
 /**
@@ -237,6 +245,7 @@ function populateDropDown() {
 }
 
 function runRule(rule, list) {
+    if (list.length <1) return;
     sessionStorage.setItem('recentBook', 1); //TODO : move to book visit
     if (rule === 'overdue') {
         return list.filter(loan => {
@@ -250,8 +259,8 @@ function runRule(rule, list) {
     }
 
     return list.filter(item => {
-        if(!item[rule.substr(0, rule.indexOf(':'))]) return;
-        return item[rule.substr(0, rule.indexOf(':'))].toString() === rule.substr( rule.indexOf(':')+1);
+        if (!item[rule.substr(0, rule.indexOf(':'))]) return;
+        return item[rule.substr(0, rule.indexOf(':'))].toString() === rule.substr(rule.indexOf(':') + 1);
     });
 
     return rule;

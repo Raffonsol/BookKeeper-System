@@ -31,8 +31,8 @@ var validators = {
     },
     loan: {
         loan_isbn: {required: true, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
-        loanDuration: {required: true, regex: '\\s+\\d{1,6}\\s+', touched: false},
-        extensions: {required: true, regex: '\\s+\\d{1,6}\\s+', touched: false},
+        loanDuration: {required: true, regex: null, touched: false},
+        extensions: {required: true, regex: null, touched: false},
     }
 };
 
@@ -105,7 +105,7 @@ function submitData() {
         return;
     }
 
-    console.log('submitted', formData);
+    if (!changeType) changeType = 'create';
     const url= hostUrl + dataType + 's';
     $.ajax({
         url: changeType === 'create' ? url : url + '/' + dataId,

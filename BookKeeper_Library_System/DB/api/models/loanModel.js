@@ -6,7 +6,8 @@ var Loan = function (loan) {
     this.bookId = null;
     this.memberAccount = loan.memberAccount;
     this.employeeId = loan.employeeId;
-    this.isbn = loan.isbn;
+    this.isbn = loan.loan_isbn;
+    this.extensions = loan.extensions;
 
     var today = new Date();
     this.dueDate = today.setDate(today.getDate() + loan.loanDuration);
@@ -28,7 +29,7 @@ Loan.createLoan = function (newLoan, result) {
             result(err, null);
         } else {
 
-            newLoan.bookId = res[0].id;
+            newLoan.bookId = res[0] ? res[0].id : null;
             sql.query("INSERT INTO transaction set ?", transaction, function (err, res) {
 
                 if (err) {
@@ -40,7 +41,13 @@ Loan.createLoan = function (newLoan, result) {
 
                     newLoan.transactionId = res.insertId;
 
-                    sql.query("INSERT INTO loan set ?", newLoan, function (err, res) {
+                    sql.query("INSERT INTO loan set ?", {
+                        transactionId: newLoan.transactionId,
+                        bookId: newLoan.bookId,
+                        memberAccount: newLoan.memberAccount,
+                        dueDate: newLoan.dueDate,
+                        extensions: newLoan.extensions,
+                    }, function (err, res) {
 
                         if (err) {
                             console.log("error: ", err);
@@ -48,18 +55,22 @@ Loan.createLoan = function (newLoan, result) {
                         } else {
                             console.log('loan id:', res.insertId);
 
-                            sql.query("UPDATE bookunit SET inStore = false WHERE id=(SELECT id from bookunit WHERE bookId = ? AND inStore = true ORDER BY ID LIMIT 1)", newLoan.bookId, function (err, res) {
+                            if (!newLoan.bookId) {
+                                // result(null, res);
+                            } else {
 
-                                if (err) {
-                                    console.log("error: ", err);
-                                    result(err, null);
-                                } else {
-                                    console.log('loan id:', res.insertId);
+                                sql.query("UPDATE bookunit SET inStore = false WHERE id=(SELECT id from bookunit WHERE bookId = ? AND inStore = true ORDER BY ID LIMIT 1)", newLoan.bookId, function (err, res) {
 
-                                    //result(null, res);
-                                }
-                            });
-                            //result(null, res);
+                                    if (err) {
+                                        console.log("error: ", err);
+                                        result(err, null);
+                                    } else {
+                                        console.log('loan id:', res.insertId);
+
+                                        result(null, res);
+                                    }
+                                });
+                            }
                         }
                     });
                 }
@@ -78,7 +89,7 @@ Loan.getLoanById = function (loanId, result) {
     });
 };
 Loan.getAllLoans = function (result) {
-    sql.query("SELECT * FROM loan LEFT join book ON loan.bookId = book.id WHERE completed = false", function (err, res) {
+    sql.query("SELECT loan.id, loan.extensions, loan.dueDate, book.isbn FROM loan LEFT join book ON loan.bookId = book.id", function (err, res) {
 
         if (err) {
             console.log("error: ", err);
@@ -112,7 +123,7 @@ Loan.updateById = function (id, result) {
     });
 };
 Loan.remove = function (id, result) {
-    sql.query("DELETE FROM memberaccount WHERE id = ?", [id], function (err, res) {
+    sql.query("DELETE FROM loan WHERE id = ?", [id], function (err, res) {
 
         if (err) {
             console.log("error: ", err);

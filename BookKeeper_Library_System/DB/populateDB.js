@@ -75,7 +75,7 @@ con.connect(function (err) {
         "CREATE TABLE loan (" +
         "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
         "transactionId INT," +
-        "FOREIGN KEY (transactionId) REFERENCES memberaccount(id)," +
+        "FOREIGN KEY (transactionId) REFERENCES transaction(id)," +
         "bookId INT," +
         "FOREIGN KEY (bookId) REFERENCES bookunit(id)," +
         "memberAccount INT, " +

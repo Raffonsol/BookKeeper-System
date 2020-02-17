@@ -14,7 +14,6 @@ User.createUser = function (newUser, result) {
     console.log('newUser:', newUser);
 
     sql.query("SELECT * FROM employeeaccount WHERE username = ?", newUser.createdBy, function (err, res) {
-console.log('res', res);
         if (err) {
             console.log("error: ", err);
             result(err, null);
