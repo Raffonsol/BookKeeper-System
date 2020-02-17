@@ -78,7 +78,7 @@ User.updateById = function (id, user, result) {
     sql.query("UPDATE memberaccount SET" +
         " name = ?," +
         " email = ?," +
-        " phone = ?" +
+        " phoneNumber = ?" +
         " WHERE id = ?", [
             user.name,
             user.email,
