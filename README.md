@@ -13,6 +13,7 @@ Once you have node installed, open a command prompt (restart it if it was alread
 open) and navigate into this projects directory and run the command `npm i mysql`
 ### DB file
 using the `cd` command. Navigate to 
-the DB directory, and run the command `node CreateBookKeeperDB.js`
-and then run the command `node populateDB.js`
+the DB directory, and run the command `node server.js`
+when it asks you if you want to populate the database, enter 'y'
+only populate the database the first time you run.
 
