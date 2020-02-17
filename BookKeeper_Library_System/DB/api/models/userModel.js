@@ -76,8 +76,8 @@ User.countAllUsers = function (result) {
 };
 User.updateById = function (id, user, result) {
     sql.query("UPDATE memberaccount SET" +
-        " name = ?" +
-        " email = ?" +
+        " name = ?," +
+        " email = ?," +
         " phone = ?" +
         " WHERE id = ?", [
             user.name,
