@@ -12,6 +12,9 @@ function viewBooks(rule = null, table = '#bookSearchTable') {
             type: 'GET',
             success: res => {
 
+                if (res.length < 1) {
+                    return;
+                }
                 if(rule) res = runRule(rule, res);
 
                     $(table).append(
@@ -31,7 +34,7 @@ function viewBooks(rule = null, table = '#bookSearchTable') {
 
 }
 
-function viewSuppliers() {
+function viewSuppliers(rule = null, table = '#supplierSearchTable') {
 
     const url = hostUrl + 'suppliers';
     $.ajax({
@@ -39,13 +42,12 @@ function viewSuppliers() {
         type: 'GET',
         success: res => {
 
-            console.log((res));
-            console.log(JSON.stringify(res[0].id));
-            if (res[0].id === undefined) {
+            if (res.length < 1) {
                 return;
             }
+            if(rule) res = runRule(rule, res);
 
-            $('#supplierSearchTable').append(
+            $(table).append(
                 $.map(res, function (ignore, index) {
                     return '<tr><td>' + res[index].id +
                         '</td><td>' + res[index].name +
@@ -59,7 +61,7 @@ function viewSuppliers() {
     })
 }
 
-function viewUser() {
+function viewUser(rule = null, table = 'userSearchTable') {
 
     const url = hostUrl + 'users';
     $.ajax({
@@ -67,11 +69,12 @@ function viewUser() {
         type: 'GET',
         success: res => {
 
-            if (res[0].id === undefined) {
+            if (res.length < 1) {
                 return;
             }
+            if(rule) res = runRule(rule, res);
 
-            var docs = document.getElementById('userSearchTable');
+            var docs = document.getElementById(table);
             for (var i = 0; i < res.length; i++) {
                 var idt = res[i].id;
                 var element = htmlToElements('<tr><td>' + res[i].id +
@@ -209,7 +212,6 @@ function runRule(rule, list) {
     }
     if (rule === 'recentBook') {
         return list.filter(book => {
-            console.log(book.id.toString(), sessionStorage.getItem('recentBook'));
             return book.id.toString() === sessionStorage.getItem('recentBook');
         })
     }
