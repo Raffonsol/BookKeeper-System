@@ -31,7 +31,8 @@ var validators = {
     },
     loan: {
         loan_isbn: {required: true, regex: '^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$', touched: false},
-
+        loanDuration: {required: true, regex: '\\s+\\d{1,6}\\s+', touched: false},
+        extensions: {required: true, regex: '\\s+\\d{1,6}\\s+', touched: false},
     }
 };
 
@@ -64,6 +65,16 @@ function userData() {
     form.email = (document.getElementById('email').value);
     form.phone = (document.getElementById('phone').value);
     form.createdBy = user.user;
+    return form;
+}
+
+function loanData() {
+    var form = {};
+    form.loan_isbn = (document.getElementById('loan_isbn').value);
+    form.loanDuration = (document.getElementById('loanDuration').value);
+    form.extensions = (document.getElementById('extensions').value);
+    form.createdBy = user.user;
+
     return form;
 }
 
@@ -129,6 +140,7 @@ function updateForm() {
  * @param element element just focused out of
  */
 function markAsTouched(element) {
+
     validators[dataType][element.id].touched = true;
 }
 
@@ -140,9 +152,10 @@ function markAsTouched(element) {
  * @param submitting if true, the user is trying to submit
  */
 function validate(field, value, submitting = false) {
+
     // get the field being evaluated
     var validatorObject = validators[dataType][field];
-
+console.log('va', validatorObject, JSON.stringify(dataType))
     // check that this field was even touched in the first place
     if (!validatorObject || !validatorObject.touched && !submitting) {
         return false;
@@ -157,6 +170,7 @@ function validate(field, value, submitting = false) {
         // check if its required
         if (validatorObject.required) {
             // not set so failed
+
             setErrorMessage(field, 'Required', true, 'red');
             return true;
         }
@@ -166,10 +180,12 @@ function validate(field, value, submitting = false) {
     // test regex
     if (!validatorObject.regex || regex.test(value)) {
         // success
+
         setErrorMessage(field, '✔', false, 'green');
         return false;
     } else {
         // failed
+        
         setErrorMessage(field, 'Not valid', true, 'red');
         return true;
     }
@@ -181,6 +197,7 @@ function validate(field, value, submitting = false) {
  * @returns {boolean}
  */
 function validateAllFields(data) {
+    console.log(JSON.stringify(dataType), JSON.stringify(data));
     var success = true;
     Object.keys(data).forEach(key => {
         if (validate(key, data[key], true)) success = false;

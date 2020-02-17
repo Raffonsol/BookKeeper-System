@@ -2,22 +2,23 @@
 <html lang="en">
 
 <br>
+
+<form action="" name="loanForm" onfocusout="updateForm()" oninput="updateForm()">
 <span>ISBN</span>
-<input class="formField" id="isbn" onfocusout="markAsTouched(this)" type="text"><br>
-<label class="error-message" for="isbn"></label><br>
+<input class="formField" id="loan_isbn" onfocusout="markAsTouched(this)"  type="text"><br>
+<label class="error-message" for="loan_isbn"></label><br>
+
 
 <br>
 <span>Loan Duration</span>
-<input class="formField" id="dueDate" onfocusout="markAsTouched(this)" type="number"><br>
-<label class="error-message" for="dueDate"></label><br>
+<input class="formField" id="loanDuration" onfocusout="markAsTouched(this)" type="number"><br>
+<label class="error-message" for="loanDuration"></label><br>
 
 <br>
-<span>Exntensions</span>
+<span>Extensions</span>
 <input class="formField" id="extensions" onfocusout="markAsTouched(this)" type="number"><br>
 <label class="error-message" for="extensions"></label><br>
 
-
-
 <input class="submitBtn" type="button" value="Submit" onclick="submitData()">
-
+</form>
 </html>

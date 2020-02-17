@@ -80,7 +80,8 @@ function viewUser() {
                     '</td><td>' + res[i].email +
                     '</td><td>' + res[i].phoneNumber +
                     '</td><td>' + `<button onclick="openLoanForm()" class='material-icons'>bookmark_border</button>` +
-                    '</td><td><button onclick="" class="material-icons">edit</button><button onclick="" class="material-icons">delete_outline</button>' +
+                    '</td><td><button onclick="" class="material-icons">edit</button> ' +
+                    '<button onclick="" class="material-icons">delete_outline</button>' +
                     '</td></tr>');
                 element[0].onmouseenter = () => theHoverShit(idt);
 
@@ -98,8 +99,8 @@ function viewUser() {
 
 function openLoanForm() {
 
-    console.log("are we getting here?", hoveredId);
-    navigate('components/loanForm.html', ['admin', 'librarian']);
+    dataType='loan';
+    navigate('components/loanForm.html#'+ hoveredId, ['admin', 'librarian']);
 
 }
 
@@ -152,6 +153,12 @@ function viewLoan(rule = null, table = '#loanSearchTable') {
     })
 }
 
+function editBookForm() {
+
+    navigate('components/loanForm.html', ['admin', 'librarian']);
+
+}
+
 function filterData() {
 
     // Declare variables
@@ -174,6 +181,29 @@ function filterData() {
         }
     }
 
+}
+
+function populateDropDown() {
+
+    const url = hostUrl + 'books';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: res => {
+
+            if (res[0].id === undefined) {
+                return;
+            }
+
+            $('#loanisbn').append(
+                $.map(res, function (ignore, index) {
+                    return '<a>' + res[index].title + '<a/>' +
+                        '<a hidden="hidden">' + res[index].isbn + '<a/>'
+                }).join());
+
+        },
+        error: err => console.log(`Error ${err}`)
+    })
 }
 
 function runRule(rule, list) {
