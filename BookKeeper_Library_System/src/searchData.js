@@ -1,3 +1,6 @@
+var hoveredId = null;
+var hoveredItem = null;
+
 /**
  * search for books
  * @param rule
@@ -19,6 +22,7 @@ function viewBooks(rule = null, table = 'bookSearchTable') {
 
                 var docs = document.getElementById(table);
                 for (var i = 0; i < res.length; i++) {
+                    var result = res[i];
                     var element = htmlToElements('<tr><td>' + res[i].isbn +
                         '</td><td>' + res[i].title +
                         '</td><td>' + res[i].author +
@@ -27,7 +31,7 @@ function viewBooks(rule = null, table = 'bookSearchTable') {
                         '</td><td><button onclick="openEditForm(\'book\', [\'admin\', \'librarian\'])" class="material-icons">edit</button> ' +
                         '<button onclick="" class="material-icons">delete_outline</button>' +
                         '</td></tr>');
-                    element[0].onmouseenter = () => detectHoveredItem(res[i]);
+                    element[0].onmouseenter = () => detectHoveredItem(result);
 
                     for (var j = 0; j < element.length; j++) {
                         if (docs) docs.appendChild(element[j])
@@ -85,6 +89,7 @@ function viewUser(rule = null, table = 'userSearchTable') {
 
             var docs = document.getElementById(table);
             for (var i = 0; i < res.length; i++) {
+                var result = res[i];
                 var element = htmlToElements(
                     '<tr><td>' + res[i].name +
                     '</td><td>' + res[i].email +
@@ -93,7 +98,7 @@ function viewUser(rule = null, table = 'userSearchTable') {
                     '</td><td><button onclick="openEditForm(\'user\', [\'admin\', \'support\'])" class="material-icons">edit</button> ' +
                     '<button onclick="" class="material-icons">delete_outline</button>' +
                     '</td></tr>');
-                element[0].onmouseenter = () => detectHoveredItem(res[i]);
+                element[0].onmouseenter = () => detectHoveredItem(result);
 
                 for (var j = 0; j < element.length; j++) {
                     if (docs) docs.appendChild(element[j]);
@@ -123,13 +128,14 @@ function viewLoan(rule = null, table = 'loanSearchTable') {
 
             var docs = document.getElementById(table);
             for (var i = 0; i < res.length; i++) {
+                var result = res[i];
                 var element = htmlToElements(
                     '<tr><td>' + res[i].isbn +
                     '</td><td>' + res[i].dueDate +
                     '</td><td>' + res[i].extensions +
                     '</td><td>' + `<button onclick="markLoanAsComplete()" class='material-icons'>bookmark_border</button>` +
                     '</td></tr>');
-                element[0].onmouseenter = () => detectHoveredItem(res[i]);
+                element[0].onmouseenter = () => detectHoveredItem(result);
 
                 for (var j = 0; j < element.length; j++) {
                     if (docs) docs.appendChild(element[j]);
@@ -152,12 +158,10 @@ function openEditForm(type, permissions) {
 
     changeType = 'edit';
     dataType = type;
+    dataId = hoveredId;
     navigate('pages/editData.html', permissions);
 
 }
-
-var hoveredId = null;
-var hoveredItem = null;
 
 function detectHoveredItem(res) {
     hoveredId = res.id;
@@ -246,6 +250,7 @@ function runRule(rule, list) {
     }
 
     return list.filter(item => {
+        if(!item[rule.substr(0, rule.indexOf(':'))]) return;
         return item[rule.substr(0, rule.indexOf(':'))].toString() === rule.substr( rule.indexOf(':')+1);
     });
 

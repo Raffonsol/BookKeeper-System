@@ -52,7 +52,6 @@ function bookData() {
 }
 
 function setBookData(form) {
-    document.getElementById('supplier').value = form.supplier;
     document.getElementById('title').value = form.title;
     document.getElementById('isbn').value = form.isbn;
     document.getElementById('author').value = form.author;
@@ -61,6 +60,7 @@ function setBookData(form) {
     document.getElementById('publishDate').value = form.publishDate;
     document.getElementById('shelf').value = form.shelf;
     document.getElementById('popularity').value = form.popularity;
+    document.getElementById('units').value = 1;
 }
 
 function supplierData() {
@@ -81,9 +81,9 @@ function userData() {
 }
 
 function setUserData(form) {
-    document.getElementById('name').value = form.name;
-    document.getElementById('email').value = form.email;
-    document.getElementById('phone').value = form.phone;
+    document.getElementById('name').value = form.name ? form.name : '';
+    document.getElementById('email').value = form.email ? form.email : '';
+    document.getElementById('phone').value = form.phoneNumber ? form.phoneNumber : '';
 }
 
 function loanData() {
@@ -108,9 +108,9 @@ function submitData() {
     console.log('submitted', formData);
     const url= hostUrl + dataType + 's';
     $.ajax({
-        url: url,
+        url: changeType === 'create' ? url : url + '/' + dataId,
         data: formData,
-        type: 'POST',
+        type: changeType === 'create' ? 'POST' : 'PUT',
         success: res => console.log(res),
         error: err => console.log(`Error ${err}`)
     })

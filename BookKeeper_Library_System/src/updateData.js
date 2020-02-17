@@ -1,4 +1,4 @@
-var dataType = null;
+
 
 /**
  * Enables dropdown selections based on user permissions

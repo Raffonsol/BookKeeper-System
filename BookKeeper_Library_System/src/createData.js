@@ -1,6 +1,7 @@
 
 var dataType = null;
 var changeType = 'create';
+var dataId = null;
 
 /**
  * Enables dropdown selections based on user permissions

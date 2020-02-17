@@ -51,7 +51,7 @@ exports.read_a_book = function(req, res) {
 
 
 exports.update_a_book = function(req, res) {
-    Book.updateById(req.params.id, new Book(req.body), function(err, task) {
+    Book.updateById(req.params.bookId, new Book(req.body), function(err, task) {
         if (err)
             res.send(err);
         res.json(task);
